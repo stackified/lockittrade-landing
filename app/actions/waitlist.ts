@@ -1,4 +1,4 @@
-"use server"
+// Client-safe waitlist submission handler
 
 interface WaitlistData {
   name: string
@@ -32,10 +32,10 @@ export async function addToWaitlist(data: WaitlistData): Promise<SystemeIORespon
   }
 
   try {
-    // Get API key from environment variable
-    const apiKey = process.env.SYSTEME_IO_API_KEY
+    // Get API key from environment variable (supports public and build-time variables)
+    const apiKey = process.env.NEXT_PUBLIC_SYSTEME_IO_API_KEY || process.env.SYSTEME_IO_API_KEY
     if (!apiKey) {
-      console.error("SYSTEME_IO_API_KEY environment variable is not set")
+      console.error("Systeme.io API key environment variable is not set")
       return {
         success: false,
         error: "Server configuration error. Please try again later.",

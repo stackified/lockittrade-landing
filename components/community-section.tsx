@@ -147,7 +147,7 @@ export function CommunitySection() {
                     </div>
 
                     <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </p>
                   </div>
                 ))}

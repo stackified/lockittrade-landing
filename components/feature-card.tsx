@@ -35,7 +35,7 @@ export function FeatureCard({
       transition: {
         duration: 0.5,
         delay,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   }

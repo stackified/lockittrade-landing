@@ -1,4 +1,4 @@
-"use server"
+// Client-safe contact form submission handler
 
 interface ContactFormData {
   name: string
@@ -34,10 +34,10 @@ export async function sendContactEmail(data: ContactFormData): Promise<ContactRe
   }
 
   try {
-    // Get Formspree endpoint from environment variable
-    const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT
+    // Get Formspree endpoint from environment variable (supports public and build-time variables)
+    const formspreeEndpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || process.env.FORMSPREE_ENDPOINT
     if (!formspreeEndpoint) {
-      console.error("FORMSPREE_ENDPOINT environment variable is not set")
+      console.error("Formspree endpoint environment variable is not set")
       return {
         success: false,
         error: "Server configuration error. Please try the direct email option below.",
