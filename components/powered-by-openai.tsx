@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image"
+import { getAssetPath } from "@/lib/utils"
 
 interface PoweredByOpenAIProps {
   lightMode?: boolean
@@ -15,7 +16,7 @@ export function PoweredByOpenAI({ lightMode = false }: PoweredByOpenAIProps) {
       <span className={`text-xs ${lightMode ? "text-zinc-600" : "text-zinc-400"}`}>Powered by</span>
       <div className="relative h-4 w-20">
         <Image
-          src={lightMode ? "/openai-logo-dark.svg" : "/openai-white-lockup.png"}
+          src={lightMode ? getAssetPath("/openai-logo-dark.svg") : getAssetPath("/openai-white-lockup.png")}
           alt="OpenAI Logo"
           fill
           className="object-contain"

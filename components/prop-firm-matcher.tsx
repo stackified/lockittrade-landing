@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, XCircle, ExternalLink, Star } from "lucide-react"
 import { WaitlistModal } from "@/components/waitlist-modal"
+import { getAssetPath } from "@/lib/utils"
 
 interface PropFirm {
   id: string
@@ -35,7 +36,7 @@ export function PropFirmMatcher() {
     {
       id: "ftmo",
       name: "FTMO",
-      logo: "/placeholder.svg?height=40&width=120",
+      logo: getAssetPath("/placeholder.svg?height=40&width=120"),
       compatibility: 85,
       requirements: {
         maxDrawdown: 10,
@@ -54,7 +55,7 @@ export function PropFirmMatcher() {
     {
       id: "topstep",
       name: "TopStep",
-      logo: "/placeholder.svg?height=40&width=120",
+      logo: getAssetPath("/placeholder.svg?height=40&width=120"),
       compatibility: 75,
       requirements: {
         maxDrawdown: 6,
@@ -73,7 +74,7 @@ export function PropFirmMatcher() {
     {
       id: "the5ers",
       name: "The5%ers",
-      logo: "/placeholder.svg?height=40&width=120",
+      logo: getAssetPath("/placeholder.svg?height=40&width=120"),
       compatibility: 65,
       requirements: {
         maxDrawdown: 6,
@@ -152,7 +153,7 @@ export function PropFirmMatcher() {
                     {/* Left side - Firm info */}
                     <div className="lg:w-1/3">
                       <div className="flex items-center gap-4 mb-4">
-                        <img src={firm.logo || "/placeholder.svg"} alt={`${firm.name} logo`} className="h-10 w-auto" />
+                        <img src={firm.logo || getAssetPath("/placeholder.svg")} alt={`${firm.name} logo`} className="h-10 w-auto" />
                         <div>
                           <h3 className="text-white font-semibold text-lg">{firm.name}</h3>
                           <Badge className={`${getStatusColor(firm.status)} border`}>

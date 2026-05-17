@@ -8,6 +8,7 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { WaitlistModal } from "@/components/waitlist-modal"
 import { motion, AnimatePresence } from "framer-motion"
+import { getAssetPath } from "@/lib/utils"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -36,7 +37,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group relative z-10">
             <Image
-              src="/logo.png"
+              src={getAssetPath("/logo.png")}
               alt="LockItTrade"
               width={200}
               height={50}

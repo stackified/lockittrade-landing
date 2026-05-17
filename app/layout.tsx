@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { IntercomProvider } from "@/components/intercom-provider"
+import { getAssetPath } from "@/lib/utils"
 import "./globals.css"
 
 const inter = Inter({
@@ -44,11 +45,11 @@ export const metadata: Metadata = {
   // Enhanced favicon and icons configuration
   icons: {
     icon: [
-      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+      { url: getAssetPath("/favicon.png"), sizes: "32x32", type: "image/png" },
+      { url: getAssetPath("/favicon.png"), sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "/favicon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.png",
+    apple: [{ url: getAssetPath("/favicon.png"), sizes: "180x180", type: "image/png" }],
+    shortcut: getAssetPath("/favicon.png"),
   },
 
   // Enhanced OpenGraph
@@ -185,7 +186,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="/fpmain.js" defer />
+        <script src={getAssetPath("/fpmain.js")} defer />
         <script src="https://cdn.firstpromoter.com/fpr.js" defer />
 
         {/* Enhanced Structured Data with Organization Schema */}
@@ -197,17 +198,17 @@ export default function RootLayout({
         />
 
         {/* Additional favicon links for better browser support */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href={getAssetPath("/favicon.png")} />
+        <link rel="icon" type="image/png" sizes="16x16" href={getAssetPath("/favicon.png")} />
+        <link rel="apple-touch-icon" sizes="180x180" href={getAssetPath("/favicon.png")} />
+        <link rel="shortcut icon" href={getAssetPath("/favicon.png")} />
 
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#00A9E0" />
         <meta name="msapplication-TileColor" content="#00A9E0" />
 
         {/* Preload critical resources */}
-        <link rel="preload" href="/logo.png" as="image" />
+        <link rel="preload" href={getAssetPath("/logo.png")} as="image" />
 
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//api.systeme.io" />

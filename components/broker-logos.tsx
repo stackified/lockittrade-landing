@@ -3,13 +3,14 @@
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import Image from "next/image"
+import { getAssetPath } from "@/lib/utils"
 
 const brokers = [
-  { name: "MetaTrader 4", logo: "/logos/mt4.png" },
-  { name: "MetaTrader 5", logo: "/logos/mt5.png" },
-  { name: "TradeLocker", logo: "/logos/tradelocker.png" },
-  { name: "NinjaTrader", logo: "/logos/ninjatrader.png" },
-  { name: "Tradovate", logo: "/logos/tradovate.png" },
+  { name: "MetaTrader 4", logo: getAssetPath("/logos/mt4.png") },
+  { name: "MetaTrader 5", logo: getAssetPath("/logos/mt5.png") },
+  { name: "TradeLocker", logo: getAssetPath("/logos/tradelocker.png") },
+  { name: "NinjaTrader", logo: getAssetPath("/logos/ninjatrader.png") },
+  { name: "Tradovate", logo: getAssetPath("/logos/tradovate.png") },
 ]
 
 export function BrokerLogos() {

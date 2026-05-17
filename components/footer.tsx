@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Youtube, ArrowUp, Instagram } from "lucide-react"
+import { getAssetPath } from "@/lib/utils"
 
 export function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -33,7 +34,7 @@ export function Footer() {
           {/* Left Side - Brand Identity */}
           <div className="w-full md:w-auto">
             <div className="flex items-center">
-              <Image src="/logo.png" alt="Lock It Trade" width={200} height={60} className="h-12 w-auto" />
+              <Image src={getAssetPath("/logo.png")} alt="Lock It Trade" width={200} height={60} className="h-12 w-auto" />
             </div>
             <p className="text-slate-500 text-sm mt-4">© 2025 Lock It Trade. All rights reserved.</p>
             <p className="text-slate-600 text-xs mt-2">
