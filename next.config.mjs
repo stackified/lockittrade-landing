@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const isDev = process.env.NODE_ENV === 'development';
+
 const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH !== undefined 
   ? process.env.NEXT_PUBLIC_BASE_PATH 
-  : '/lockittrade-landing';
+  : (isDev ? '' : '/lockittrade-landing');
 
 // Clean the base path: remove trailing slash, ensure starting slash if not empty
 let basePath = rawBasePath.trim();
