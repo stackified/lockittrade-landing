@@ -9,7 +9,7 @@ const nextConfig = {
   },
   // If deploying to https://stackified.github.io/lockittrade-landing (without a custom domain),
   // uncomment the line below:
-  // basePath: '/lockittrade-landing',
+  basePath: '/lockittrade-landing',
 }
 
 export default nextConfig
