@@ -53,7 +53,7 @@ export function Navbar() {
     <>
       <div className="fixed top-0 left-0 right-0 w-full z-50 flex justify-center pt-4 md:pt-6 px-4 transition-all duration-300">
         <nav 
-          className={`w-full max-w-5xl mx-auto transition-all duration-500 rounded-full border flex items-center justify-between px-6 py-3 ${
+          className={`w-full max-w-5xl mx-auto transition-all duration-500 rounded-full border flex items-center justify-between px-6 py-4 relative ${
             scrolled 
               ? "bg-black/60 backdrop-blur-2xl border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.4)]" 
               : "bg-black/20 backdrop-blur-lg border-transparent"
@@ -64,10 +64,10 @@ export function Navbar() {
             <Image
               src={getAssetPath("/logo.png")}
               alt="LockItTrade"
-              width={200}
-              height={50}
+              width={240}
+              height={60}
               priority
-              className="h-7 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-9 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
