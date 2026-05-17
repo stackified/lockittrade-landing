@@ -74,7 +74,7 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8 absolute left-[47%] -translate-x-1/2">
             <Link
-              href={getAssetPath("/")}
+              href="/"
               className={`transition-colors duration-200 text-sm font-semibold tracking-wide ${
                 isActive("/") ? "text-[#00A9E0]" : "text-zinc-300 hover:text-white"
               }`}
@@ -101,14 +101,14 @@ export function Navbar() {
             </DropdownMenu>
 
             <Link
-              href={getAssetPath("/#features")}
+              href="/#features"
               className="text-zinc-300 hover:text-white transition-colors duration-200 text-sm font-semibold tracking-wide"
             >
               Features
             </Link>
 
             <Link
-              href={getAssetPath("/prop-firm-ready")}
+              href="/prop-firm-ready"
               className={`transition-colors duration-200 text-sm font-semibold tracking-wide ${
                 isActive("/prop-firm-ready") ? "text-[#00A9E0]" : "text-zinc-300 hover:text-white"
               }`}
@@ -117,7 +117,7 @@ export function Navbar() {
             </Link>
             
             <Link
-              href={getAssetPath("/pricing")}
+              href="/pricing"
               className={`transition-colors duration-200 text-sm font-semibold tracking-wide ${
                 isActive("/pricing") ? "text-[#00A9E0]" : "text-zinc-300 hover:text-white"
               }`}
@@ -162,19 +162,19 @@ export function Navbar() {
               transition={{ duration: 0.2 }}
               className="absolute top-[80px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl p-6 lg:hidden flex flex-col space-y-4"
             >
-              <Link href={getAssetPath("/")} className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
+              <Link href="/" className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
                 Home
               </Link>
               <Link href="https://discord.gg/VJJEwe3tU2" target="_blank" className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Community (Discord)
               </Link>
-              <Link href={getAssetPath("/#features")} className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+              <Link href="/#features" className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Features
               </Link>
-              <Link href={getAssetPath("/prop-firm-ready")} className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/prop-firm-ready") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
+              <Link href="/prop-firm-ready" className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/prop-firm-ready") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
                 Prop Firm Ready
               </Link>
-              <Link href={getAssetPath("/pricing")} className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/pricing") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
+              <Link href="/pricing" className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/pricing") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
                 Pricing
               </Link>
               
