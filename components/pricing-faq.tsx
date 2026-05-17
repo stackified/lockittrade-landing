@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Card } from "@/components/ui/card"
 import { ChevronDown, ChevronUp } from "lucide-react"
 
 interface FAQItem {
@@ -22,7 +21,7 @@ export function PricingFAQ() {
     {
       question: "Can I change plans anytime?",
       answer:
-        "Absolutely. You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we&apos;ll prorate any billing differences.",
+        "Absolutely. You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any billing differences.",
     },
     {
       question: "What payment methods do you accept?",
@@ -37,7 +36,7 @@ export function PricingFAQ() {
     {
       question: "Do you offer refunds?",
       answer:
-        "Yes, we offer a 30-day money-back guarantee. If you&apos;re not satisfied with Lock It Trade for any reason, contact us within 30 days for a full refund.",
+        "Yes, we offer a 30-day money-back guarantee. If you're not satisfied with Lock It Trade for any reason, contact us within 30 days for a full refund.",
     },
     {
       question: "Can I use Lock It Trade with any broker?",
@@ -51,8 +50,11 @@ export function PricingFAQ() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-black to-zinc-900">
-      <div className="container max-w-screen-xl mx-auto px-4">
+    <section className="py-12 md:py-16 bg-black relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-[#9C5FFF]/[0.03] blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -60,56 +62,68 @@ export function PricingFAQ() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.3)]">Questions</span>
+          </h2>
+          <p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
             Got questions? We&apos;ve got answers. If you can&apos;t find what you&apos;re looking for, feel free to reach out to our
             support team.
           </p>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="mb-4"
-            >
-              <Card className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800/50 overflow-hidden">
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-zinc-800/30 transition-colors duration-200"
-                >
-                  <h3 className="text-lg font-semibold text-white pr-4">{faq.question}</h3>
-                  <div className="flex-shrink-0">
-                    {openIndex === index ? (
-                      <ChevronUp className="h-5 w-5 text-[#00A9E0]" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-zinc-400" />
-                    )}
-                  </div>
-                </button>
+          {faqs.map((faq, index) => {
+            const isExpanded = openIndex === index
 
-                <AnimatePresence>
-                  {openIndex === index && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 border-t border-zinc-800/50">
-                        <p className="text-zinc-300 leading-relaxed pt-4">{faq.answer}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Card>
-            </motion.div>
-          ))}
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="mb-4"
+              >
+                <div
+                  className={`rounded-2xl border backdrop-blur-xl transition-all duration-300 overflow-hidden ${
+                    isExpanded 
+                      ? "bg-[#0c0c0c]/80 border-[#00A9E0]/40 shadow-[0_0_30px_rgba(0,169,224,0.08)] ring-1 ring-[#00A9E0]/20" 
+                      : "bg-[#0a0a0a]/60 border-white/[0.08] hover:border-white/20 hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full p-6 text-left flex items-center justify-between transition-colors duration-200"
+                  >
+                    <h3 className="text-base sm:text-lg font-bold text-white pr-4 tracking-tight">{faq.question}</h3>
+                    <div className="flex-shrink-0">
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5 text-[#00A9E0]" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-zinc-400" />
+                      )}
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 border-t border-white/[0.05]">
+                          <p className="text-zinc-300 leading-relaxed pt-4 text-sm sm:text-base">{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Contact Support */}
@@ -120,10 +134,10 @@ export function PricingFAQ() {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <p className="text-zinc-400 mb-4">Still have questions?</p>
+          <p className="text-zinc-500 text-sm mb-3 font-semibold uppercase tracking-wider">Still have questions?</p>
           <a
             href="mailto:lockittrade@gmail.com"
-            className="text-[#00A9E0] hover:text-blue-300 font-medium transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 text-[#00A9E0] hover:text-blue-300 font-bold transition-all duration-200 hover:scale-105 hover:underline"
           >
             Contact our support team →
           </a>

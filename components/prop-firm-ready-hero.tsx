@@ -3,9 +3,10 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { CheckCircle, AlertTriangle, XCircle, TrendingUp } from "lucide-react"
+import { CheckCircle, AlertTriangle, XCircle, TrendingUp, ChevronRight } from "lucide-react"
 import { WaitlistModal } from "@/components/waitlist-modal"
+import { ParticleBackground } from "@/components/particle-background"
+import { AIGridBackground } from "@/components/ai-grid-background"
 
 export function PropFirmReadyHero() {
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false)
@@ -14,14 +15,14 @@ export function PropFirmReadyHero() {
   const readinessScore = 73
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return "#22c55e" // Green
+    if (score >= 80) return "#10b981" // Green
     if (score >= 70) return "#eab308" // Yellow
     if (score >= 50) return "#f59e0b" // Orange
     return "#ef4444" // Red
   }
 
   const getScoreStatus = (score: number) => {
-    if (score >= 80) return { text: "Prop Firm Ready", icon: CheckCircle, color: "text-green-400" }
+    if (score >= 80) return { text: "Prop Firm Ready", icon: CheckCircle, color: "text-emerald-400" }
     if (score >= 70) return { text: "Almost Ready", icon: AlertTriangle, color: "text-yellow-400" }
     if (score >= 50) return { text: "Making Progress", icon: TrendingUp, color: "text-orange-400" }
     return { text: "Getting Started", icon: XCircle, color: "text-red-400" }
@@ -32,13 +33,16 @@ export function PropFirmReadyHero() {
 
   return (
     <>
-      <section className="relative py-8 md:py-16 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-[#00A9E0]/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#00A9E0]/5 blur-[100px] rounded-full pointer-events-none" />
+      <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden bg-black">
+        {/* Background Components */}
+        <AIGridBackground />
+        <ParticleBackground />
+
+        {/* Huge Ambient Glow in Center */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] bg-[#00A9E0]/[0.12] blur-[150px] rounded-full pointer-events-none" />
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left side - Content */}
             <motion.div
               className="lg:w-1/2 text-center lg:text-left"
@@ -46,34 +50,49 @@ export function PropFirmReadyHero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                Are You <span className="text-[#00A9E0]">Prop Firm Ready?</span>
+              {/* Pill badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:bg-white/[0.05] transition-colors cursor-pointer justify-center lg:justify-start"
+                onClick={() => setIsWaitlistModalOpen(true)}
+              >
+                <span className="flex h-2 w-2 rounded-full bg-[#00A9E0] shadow-[0_0_8px_#00A9E0]"></span>
+                <span className="text-zinc-300 text-xs font-semibold uppercase tracking-wider">Live Readiness Assessment</span>
+                <ChevronRight className="w-3.5 h-3.5 text-zinc-500" />
+              </motion.div>
+
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05] mb-6">
+                Are You <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.35)]">
+                  Prop Firm Ready?
+                </span>
               </h1>
 
-              <p className="text-lg md:text-xl text-zinc-400 mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg md:text-xl text-zinc-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Get a personalized assessment of your trading performance against prop firm evaluation criteria. Know
-                exactly where you stand and what to improve.
+                exactly where you stand and what to improve to get funded.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
                 <Button
                   size="lg"
-                  className="bg-[#00A9E0] hover:bg-[#00A9E0]/80 text-white font-bold text-lg py-7 px-10 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,169,224,0.6)]"
+                  className="bg-[#00A9E0] hover:bg-[#00A9E0]/90 text-white font-bold text-base h-14 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(0,169,224,0.5)]"
                   onClick={() => setIsWaitlistModalOpen(true)}
                 >
                   Get Your Score
                 </Button>
                 <Button
-                  variant="outline"
                   size="lg"
-                  className="border-zinc-700 text-white hover:bg-zinc-800 font-medium text-lg py-7 px-10 bg-transparent"
+                  className="border border-white/10 text-zinc-300 hover:text-white hover:bg-white/5 bg-transparent font-semibold text-base h-14 px-8 rounded-full transition-all duration-300 hover:scale-105"
                 >
                   Learn More
                 </Button>
               </div>
 
               {/* Key Benefits */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto lg:mx-0">
                 {[
                   "Real-time readiness scoring",
                   "Trading style adaptation",
@@ -82,13 +101,15 @@ export function PropFirmReadyHero() {
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-center gap-2 text-zinc-300"
+                    className="flex items-center gap-3 text-zinc-300 justify-center lg:justify-start"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
-                    <CheckCircle className="h-4 w-4 text-[#00A9E0] flex-shrink-0" />
-                    <span className="text-sm">{benefit}</span>
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                      <CheckCircle className="h-3 w-3 text-emerald-400" />
+                    </div>
+                    <span className="text-sm font-medium">{benefit}</span>
                   </motion.div>
                 ))}
               </div>
@@ -96,35 +117,50 @@ export function PropFirmReadyHero() {
 
             {/* Right side - Score Display */}
             <motion.div
-              className="lg:w-1/2 flex justify-center"
+              className="lg:w-1/2 flex justify-center w-full"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Card className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800/50 p-8 max-w-md w-full">
-                <div className="text-center">
-                  <h3 className="text-xl font-semibold text-white mb-6">Sample Readiness Score</h3>
+              <div className="relative w-full max-w-md rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden">
+                {/* Glass reflection overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+
+                {/* Header bar of the mock window */}
+                <div className="absolute top-0 left-0 right-0 h-11 bg-black/40 border-b border-white/[0.05] flex items-center px-6 z-20">
+                  <div className="flex gap-1.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-50">
+                    <span className="text-[9px] text-white/50 font-bold tracking-widest uppercase">Readiness Assessment</span>
+                  </div>
+                </div>
+
+                <div className="text-center pt-8">
+                  <h3 className="text-lg font-bold text-white mb-6 uppercase tracking-wider opacity-90">Sample Readiness Score</h3>
 
                   {/* Circular Progress */}
-                  <div className="relative w-48 h-48 mx-auto mb-6">
-                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <div className="relative w-48 h-48 mx-auto mb-8">
+                    <svg className="overflow-visible w-full h-full transform -rotate-90" viewBox="0 0 140 140">
                       {/* Background circle */}
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="#374151" strokeWidth="8" />
+                      <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="7" />
                       {/* Progress circle */}
                       <motion.circle
-                        cx="50"
-                        cy="50"
-                        r="40"
+                        cx="70"
+                        cy="70"
+                        r="60"
                         fill="none"
                         stroke={getScoreColor(readinessScore)}
-                        strokeWidth="8"
+                        strokeWidth="7"
                         strokeLinecap="round"
-                        strokeDasharray="251.2"
-                        initial={{ strokeDashoffset: 251.2 }}
-                        animate={{ strokeDashoffset: 251.2 * (1 - readinessScore / 100) }}
+                        strokeDasharray="377"
+                        initial={{ strokeDashoffset: 377 }}
+                        animate={{ strokeDashoffset: 377 * (1 - readinessScore / 100) }}
                         transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
                         style={{
-                          filter: `drop-shadow(0 0 8px ${getScoreColor(readinessScore)}40)`,
+                          filter: `drop-shadow(0 0 8px ${getScoreColor(readinessScore)})`,
                         }}
                       />
                     </svg>
@@ -132,41 +168,36 @@ export function PropFirmReadyHero() {
                     {/* Score text */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <motion.div
-                        className="text-4xl font-bold text-white mb-1"
+                        className="text-5xl font-black text-white tracking-tight mb-1"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 1.5 }}
+                        transition={{ duration: 0.5, delay: 1.2 }}
                       >
                         {readinessScore}%
                       </motion.div>
-                      <div className={`flex items-center gap-1 ${status.color}`}>
+                      <div className={`flex items-center gap-1.5 ${status.color}`}>
                         <StatusIcon className="h-4 w-4" />
-                        <span className="text-sm font-medium">{status.text}</span>
+                        <span className="text-xs font-bold uppercase tracking-wider">{status.text}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Quick metrics */}
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="bg-zinc-800/50 rounded-lg p-3">
-                      <div className="text-zinc-400">Win Rate</div>
-                      <div className="text-white font-semibold">68%</div>
-                    </div>
-                    <div className="bg-zinc-800/50 rounded-lg p-3">
-                      <div className="text-zinc-400">Max Drawdown</div>
-                      <div className="text-white font-semibold">-8.2%</div>
-                    </div>
-                    <div className="bg-zinc-800/50 rounded-lg p-3">
-                      <div className="text-zinc-400">Risk:Reward</div>
-                      <div className="text-white font-semibold">1:2.1</div>
-                    </div>
-                    <div className="bg-zinc-800/50 rounded-lg p-3">
-                      <div className="text-zinc-400">Consistency</div>
-                      <div className="text-white font-semibold">82%</div>
-                    </div>
+                  <div className="grid grid-cols-2 gap-3.5 text-sm">
+                    {[
+                      { label: "Win Rate", value: "68%" },
+                      { label: "Max Drawdown", value: "-8.2%" },
+                      { label: "Risk:Reward", value: "1:2.1" },
+                      { label: "Consistency", value: "82%" }
+                    ].map((metric, i) => (
+                      <div key={i} className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-3.5 text-left transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]">
+                        <div className="text-zinc-500 text-xs font-medium uppercase tracking-wider">{metric.label}</div>
+                        <div className="text-white font-extrabold text-lg mt-1 tracking-tight">{metric.value}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </Card>
+              </div>
             </motion.div>
           </div>
         </div>

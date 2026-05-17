@@ -68,7 +68,7 @@ export function CommunitySection() {
 
     const scroll = () => {
       if (container) {
-        container.scrollLeft += 0.3
+        container.scrollLeft += 0.1
         // Seamless loop
         if (container.scrollLeft >= container.scrollWidth / 2) {
           container.scrollLeft = 0
@@ -126,7 +126,7 @@ export function CommunitySection() {
                className="flex gap-6 overflow-x-auto pb-6 pt-2 px-4 md:px-8 [&::-webkit-scrollbar]:hidden" 
                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
              >
-                {[...testimonials, ...testimonials, ...testimonials].map((testimonial, idx) => (
+                {[...testimonials, ...testimonials].map((testimonial, idx) => (
                   <div key={idx} className="flex-shrink-0 w-[300px] sm:w-[400px] glass-panel p-6 sm:p-8 rounded-[2rem] border border-white/5 bg-black/40 backdrop-blur-md relative group cursor-grab active:cursor-grabbing">
                     <Quote className="absolute top-6 right-6 text-white/5 w-8 h-8 group-hover:text-[#00A9E0]/20 transition-colors duration-300" />
                     

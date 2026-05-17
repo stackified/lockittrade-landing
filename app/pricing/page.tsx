@@ -7,7 +7,7 @@ import { Footer } from "@/components/footer"
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black to-zinc-900 pt-32 md:pt-40">
+    <main className="min-h-screen bg-black overflow-x-hidden">
       <Navbar />
       <PricingHero />
       <PricingPlans />
