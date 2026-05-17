@@ -49,10 +49,17 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
             <Link
-              href="/"
+              href={getAssetPath("/")}
               className="text-zinc-300 hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
             >
               Home
+            </Link>
+            
+            <Link
+              href={getAssetPath("/prop-firm-ready")}
+              className="text-zinc-300 hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
+            >
+              Prop Firm Ready
             </Link>
             
             <DropdownMenu>
@@ -74,13 +81,13 @@ export function Navbar() {
             </DropdownMenu>
 
             <Link
-              href="#features"
+              href={getAssetPath("/#features")}
               className="text-zinc-300 hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
             >
               Features
             </Link>
             <Link
-              href="#pricing"
+              href={getAssetPath("/pricing")}
               className="text-zinc-300 hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
             >
               Pricing
@@ -123,16 +130,19 @@ export function Navbar() {
               transition={{ duration: 0.2 }}
               className="absolute top-[80px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl p-6 lg:hidden flex flex-col space-y-4"
             >
-              <Link href="/" className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+              <Link href={getAssetPath("/")} className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Home
+              </Link>
+              <Link href={getAssetPath("/prop-firm-ready")} className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+                Prop Firm Ready
               </Link>
               <Link href="https://discord.gg/VJJEwe3tU2" target="_blank" className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Community (Discord)
               </Link>
-              <Link href="#features" className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+              <Link href={getAssetPath("/#features")} className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Features
               </Link>
-              <Link href="#pricing" className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+              <Link href={getAssetPath("/pricing")} className="text-zinc-300 hover:text-white font-medium py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Pricing
               </Link>
               
