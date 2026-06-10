@@ -12,6 +12,8 @@ export function AIGridBackground() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
     // Set canvas dimensions
     const setCanvasDimensions = () => {
       const dpr = window.devicePixelRatio || 1
@@ -148,13 +150,61 @@ export function AIGridBackground() {
       animationFrameId = requestAnimationFrame(draw)
     }
 
-    draw()
+    // One static frame for users who prefer reduced motion — no rAF loop.
+    const drawStaticFrame = () => {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const canvasWidth = canvas.width / (window.devicePixelRatio || 1)
+      const canvasHeight = canvas.height / (window.devicePixelRatio || 1)
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)"
+      ctx.lineWidth = lineWidth
+      for (let x = 0; x < canvasWidth; x += gridSize) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvasHeight); ctx.stroke()
+      }
+      for (let y = 0; y < canvasHeight; y += gridSize) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvasWidth, y); ctx.stroke()
+      }
+      ctx.fillStyle = "rgba(255, 255, 255, 0.3)"
+      for (let x = 0; x < canvasWidth; x += gridSize) {
+        for (let y = 0; y < canvasHeight; y += gridSize) {
+          ctx.beginPath(); ctx.arc(x, y, nodeRadius, 0, Math.PI * 2); ctx.fill()
+        }
+      }
+    }
+
+    let running = false
+    const start = () => {
+      if (running || prefersReducedMotion) return
+      running = true
+      // Recompute in case the canvas mounted while offscreen / collapsed.
+      setCanvasDimensions()
+      animationFrameId = requestAnimationFrame(draw)
+    }
+    const stop = () => {
+      running = false
+      if (animationFrameId) cancelAnimationFrame(animationFrameId)
+    }
+
+    // Only animate while the canvas is on-screen — pausing offscreen removes
+    // continuous main-thread work that otherwise runs for the whole page.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start()
+        else stop()
+      },
+      { threshold: 0 }
+    )
+
+    if (prefersReducedMotion) {
+      drawStaticFrame()
+    } else {
+      observer.observe(canvas)
+    }
 
     return () => {
       window.removeEventListener("resize", handleResize)
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId)
-      }
+      observer.disconnect()
+      stop()
     }
   }, [])
 

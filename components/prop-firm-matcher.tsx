@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -161,10 +162,12 @@ export function PropFirmMatcher() {
                     <div className="lg:w-1/3">
                       <div className="flex items-center gap-4 mb-5">
                         <div className="p-1 bg-white/[0.02] border border-white/10 rounded-2xl flex items-center justify-center h-14 w-32 overflow-hidden backdrop-blur-md transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/[0.05]">
-                          <img 
-                            src={firm.logo || getAssetPath("/placeholder.svg")} 
-                            alt={`${firm.name} logo`} 
-                            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" 
+                          <Image
+                            src={firm.logo || getAssetPath("/placeholder.svg")}
+                            alt={`${firm.name} logo`}
+                            width={128}
+                            height={56}
+                            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                           />
                         </div>
                         <div>

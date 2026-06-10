@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Script from "next/script"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { IntercomProvider } from "@/components/intercom-provider"
@@ -186,9 +187,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src={getAssetPath("/fpmain.js")} defer />
-        <script src="https://cdn.firstpromoter.com/fpr.js" defer />
-
         {/* Enhanced Structured Data with Organization Schema */}
         <script
           type="application/ld+json"
@@ -222,6 +220,12 @@ export default function RootLayout({
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
         <IntercomProvider />
+
+        {/* FirstPromoter affiliate tracking — deferred to idle so it stays off
+            the critical path. fpmain.js registers the fpr() queue + init/click;
+            fpr.js (the library) flushes that queue. */}
+        <Script id="fpr-main" src={getAssetPath("/fpmain.js")} strategy="lazyOnload" />
+        <Script id="fpr-lib" src="https://cdn.firstpromoter.com/fpr.js" strategy="lazyOnload" />
       </body>
     </html>
   )

@@ -6,10 +6,19 @@ import { Button } from "@/components/ui/button"
 import { TradingCards } from "@/components/trading-cards"
 import { ParticleBackground } from "@/components/particle-background"
 import { AIGridBackground } from "@/components/ai-grid-background"
+import dynamic from "next/dynamic"
 import { PoweredByOpenAI } from "@/components/powered-by-openai"
-import { WaitlistModal } from "@/components/waitlist-modal"
-import { VideoModal } from "@/components/video-modal"
 import { ChevronRight, Play, Star, Users, TrendingUp, Sparkles } from "lucide-react"
+
+// Modals are hidden by default — load their code only when first opened.
+const WaitlistModal = dynamic(
+  () => import("@/components/waitlist-modal").then((m) => m.WaitlistModal),
+  { ssr: false }
+)
+const VideoModal = dynamic(
+  () => import("@/components/video-modal").then((m) => m.VideoModal),
+  { ssr: false }
+)
 
 export function HeroSection() {
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false)

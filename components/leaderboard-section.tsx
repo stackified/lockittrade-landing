@@ -161,3 +161,6 @@ export function LeaderboardSection() {
     </section>
   )
 }
+
+export default LeaderboardSection
+

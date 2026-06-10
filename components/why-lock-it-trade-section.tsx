@@ -138,3 +138,6 @@ export function WhyLockItTradeSection() {
     </>
   )
 }
+
+export default WhyLockItTradeSection
+

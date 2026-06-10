@@ -248,3 +248,6 @@ export function TraderTypeSelector() {
     </section>
   )
 }
+
+export default TraderTypeSelector
+

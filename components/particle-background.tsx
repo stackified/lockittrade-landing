@@ -1,7 +1,9 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion"
 
 // Generate deterministic particle data using a seed
 function seededRandom(seed: number) {
@@ -19,16 +21,24 @@ interface Particle {
   delay: number
 }
 
+// Trimmed from 40 → 16: fewer infinitely-animating nodes = less main-thread work.
+const PARTICLE_COUNT = 16
+
 export function ParticleBackground() {
   const [mounted, setMounted] = useState(false)
+  const reducedMotion = usePrefersReducedMotion()
+  // Pause the per-particle animations whenever this background is off-screen.
+  const { ref, inView } = useInView({ rootMargin: "100px" })
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  const animate = mounted && inView && !reducedMotion
+
   // Generate particles only once using deterministic seed
   const particles: Particle[] = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => ({
+    return Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
       width: seededRandom(i * 4 + 1) * 3 + 1,
       height: seededRandom(i * 4 + 2) * 3 + 1,
       top: `${seededRandom(i * 4 + 3) * 100}%`,
@@ -42,14 +52,14 @@ export function ParticleBackground() {
   // Don't render particles on server to avoid hydration mismatch
   if (!mounted) {
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
       </div>
     )
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
 
       {/* Ambient glow orbs */}
@@ -69,16 +79,24 @@ export function ParticleBackground() {
               left: p.left,
               opacity: p.opacity,
             }}
-            animate={{
-              opacity: [p.opacity * 0.3, p.opacity, p.opacity * 0.3],
-              scale: [1, 1.8, 1],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              repeatType: "reverse",
-              delay: p.delay,
-            }}
+            animate={
+              animate
+                ? {
+                    opacity: [p.opacity * 0.3, p.opacity, p.opacity * 0.3],
+                    scale: [1, 1.8, 1],
+                  }
+                : undefined
+            }
+            transition={
+              animate
+                ? {
+                    duration: p.duration,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    delay: p.delay,
+                  }
+                : undefined
+            }
           />
         ))}
       </div>
@@ -91,8 +109,8 @@ export function ParticleBackground() {
           strokeWidth="0.5"
           fill="none"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.6 }}
-          transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
+          animate={animate ? { pathLength: 1, opacity: 0.6 } : { pathLength: 1, opacity: 0.4 }}
+          transition={animate ? { duration: 6, repeat: Infinity, repeatType: "reverse" } : { duration: 0 }}
         />
         <motion.path
           d="M0,200 Q350,140 700,200 T1400,200"
@@ -100,8 +118,8 @@ export function ParticleBackground() {
           strokeWidth="0.5"
           fill="none"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.4 }}
-          transition={{ duration: 8, repeat: Infinity, repeatType: "reverse", delay: 2 }}
+          animate={animate ? { pathLength: 1, opacity: 0.4 } : { pathLength: 1, opacity: 0.3 }}
+          transition={animate ? { duration: 8, repeat: Infinity, repeatType: "reverse", delay: 2 } : { duration: 0 }}
         />
         <defs>
           <linearGradient id="particleGrad" x1="0%" y1="0%" x2="100%" y2="0%">

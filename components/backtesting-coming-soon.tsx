@@ -118,3 +118,6 @@ export function BacktestingComingSoon() {
     </section>
   )
 }
+
+export default BacktestingComingSoon
+

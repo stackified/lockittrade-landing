@@ -51,10 +51,12 @@ export function BrokerLogos() {
                 key={i}
                 className="mx-6 sm:mx-10 md:mx-14 flex items-center gap-3 md:gap-4 group cursor-default shrink-0"
               >
-                <img 
-                  src={broker.logo} 
-                  alt={broker.name} 
-                  className="object-contain h-8 sm:h-12 w-auto rounded-xl opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
+                <Image
+                  src={broker.logo}
+                  alt={broker.name}
+                  width={120}
+                  height={48}
+                  className="object-contain h-8 sm:h-12 w-auto rounded-xl opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}

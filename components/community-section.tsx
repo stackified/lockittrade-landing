@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ParticleBackground } from "@/components/particle-background"
 import { AIGridBackground } from "@/components/ai-grid-background"
 import { WaitlistModal } from "@/components/waitlist-modal"
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion"
 import { Star, MessageCircle, Quote } from "lucide-react"
 
 const testimonials = [
@@ -59,10 +60,25 @@ export function CommunitySection() {
   const inView = useInView(containerRef, { once: true, amount: 0.1 })
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const reducedMotion = usePrefersReducedMotion()
+
+  // Track whether the carousel is on-screen so we can pause the rAF loop.
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const container = scrollContainerRef.current
-    if (!container || isHovered) return
+    // Only animate while visible, not hovered, and motion is allowed.
+    if (!container || isHovered || !isVisible || reducedMotion) return
 
     let animationFrameId: number
 
@@ -79,7 +95,7 @@ export function CommunitySection() {
 
     animationFrameId = requestAnimationFrame(scroll)
     return () => cancelAnimationFrame(animationFrameId)
-  }, [isHovered])
+  }, [isHovered, isVisible, reducedMotion])
 
   return (
     <>
@@ -194,3 +210,6 @@ export function CommunitySection() {
     </>
   )
 }
+
+export default CommunitySection
+

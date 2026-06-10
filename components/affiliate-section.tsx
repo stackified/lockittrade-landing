@@ -114,3 +114,6 @@ export function AffiliateSection() {
     </section>
   )
 }
+
+export default AffiliateSection
+

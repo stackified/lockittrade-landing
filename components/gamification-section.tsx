@@ -108,3 +108,6 @@ export function GamificationSection() {
     </section>
   )
 }
+
+export default GamificationSection
+

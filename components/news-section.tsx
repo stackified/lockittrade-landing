@@ -147,3 +147,6 @@ export function NewsSection() {
     </section>
   )
 }
+
+export default NewsSection
+
