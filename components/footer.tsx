@@ -117,7 +117,7 @@ export function Footer() {
               </a>
             </div>
             <div className="mt-6">
-              <p className="text-slate-400 text-sm">Join our community of 10,000+ traders</p>
+              <p className="text-slate-400 text-sm">Join our growing community of 500+ traders</p>
             </div>
           </div>
         </div>

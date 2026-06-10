@@ -103,7 +103,7 @@ export function CommunitySection() {
               The Community
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-              Join <span className="text-[#00A9E0]">Thousands</span> of Traders.
+              Join a <span className="text-[#00A9E0]">Growing Community</span> of Traders.
             </h2>
             <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
               From journaling wins to learning from live calls and bootcamps, traders inside the LockItTrade Discord are scaling together.
@@ -162,9 +162,9 @@ export function CommunitySection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
              {[
-               { number: "250K+", label: "Trades Analyzed" },
-               { number: "10,000+", label: "Active Traders" },
-               { number: "$150M+", label: "Capital Protected" }
+               { number: "75K+", label: "Trades Analyzed" },
+               { number: "500+", label: "Active Traders" },
+               { number: "$100K+", label: "Capital Protected" }
              ].map((metric, i) => (
                <div key={i} className="bg-white/[0.02] border border-white/5 backdrop-blur-sm p-8 rounded-[2rem] text-center hover:bg-white/[0.04] transition-colors">
                  <div className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500 mb-2">{metric.number}</div>
