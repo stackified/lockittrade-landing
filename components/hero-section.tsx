@@ -129,12 +129,12 @@ export function HeroSection() {
               </div>
             </motion.div>
 
-            {/* 3D Dashboard Mockup Presentation */}
+            {/* Dashboard Mockup Presentation */}
             <motion.div
-              className="w-full max-w-6xl mx-auto relative perspective-1000"
-              initial={{ opacity: 0, y: 100, rotateX: 15 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 1.2, delay: 0.8, type: "spring", damping: 20 }}
+              className="w-full max-w-6xl mx-auto relative"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, delay: 0.8, ease: "easeOut" }}
             >
               {/* Container for the UI representation */}
               <div className="relative w-full aspect-[4/3] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/10] rounded-2xl md:rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl overflow-hidden shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 group">

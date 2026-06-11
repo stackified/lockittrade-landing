@@ -9,13 +9,12 @@ export function TradingCards() {
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[500px] w-full perspective">
+    <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[500px] w-full">
       <motion.div
         className="absolute w-full h-full"
-        initial={{ opacity: 0, rotateY: -10, x: -50 }}
-        animate={{ opacity: 1, rotateY: 0, x: 0 }}
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Win Rate Card - Adjusted positioning for mobile */}
         <Card
