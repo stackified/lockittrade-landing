@@ -53,8 +53,17 @@
   * {
     @apply border-border;
   }
+  /* The site is dark-only. Force a pure-black base on html/body so there is no
+     white flash before the page paints/hydrates and no white rubber-band
+     overscroll on iOS/Safari. color-scheme keeps native UI (scrollbars, form
+     controls) dark too. */
+  html {
+    background-color: #000;
+    color-scheme: dark;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: #000;
   }
 }
 
