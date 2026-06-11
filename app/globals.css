@@ -83,14 +83,6 @@
   transform: rotateY(180deg);
 }
 
-/* Skip rendering work for off-screen sections until they're scrolled near.
-   `auto` for contain-intrinsic-size lets the browser remember the last
-   rendered size, avoiding scrollbar jumps. */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
-}
-
 /* Glassmorphism & Premium UI Patterns */
 .glass-panel {
   background: rgba(23, 23, 23, 0.7);
