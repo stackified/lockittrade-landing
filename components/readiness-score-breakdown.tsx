@@ -122,8 +122,8 @@ export function ReadinessScoreBreakdown() {
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          whileInView={{ y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
@@ -143,8 +143,8 @@ export function ReadinessScoreBreakdown() {
             return (
               <motion.div
                 key={metric.id}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 15 }}
+                whileInView={{ y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >

@@ -97,8 +97,8 @@ export function RiskRewardBreakdown({ isActive = false }: RiskRewardBreakdownPro
           <motion.div
             key={trade.id}
             className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-zinc-700 transition-all duration-300"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             whileHover={{ scale: 1.02 }}
           >
@@ -157,8 +157,8 @@ export function RiskRewardBreakdown({ isActive = false }: RiskRewardBreakdownPro
       {/* Simple Summary */}
       <motion.div
         className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 20 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
         <div className="bg-zinc-900/50 rounded-lg px-6 py-3 inline-block">

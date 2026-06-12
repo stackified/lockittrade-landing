@@ -24,8 +24,8 @@ export function BacktestingComingSoon() {
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
+          animate={inView ? { y: 0 } : { y: 30 }}
           transition={{ duration: 0.7 }}
           className="max-w-5xl mx-auto glass-panel rounded-[2.5rem] p-8 sm:p-12 relative overflow-hidden"
         >
@@ -77,8 +77,7 @@ export function BacktestingComingSoon() {
                     <motion.path
                       d={`${equityPath} L100,100 L0,100 Z`}
                       fill="url(#equityFill)"
-                      initial={{ opacity: 0 }}
-                      animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                      animate={{ opacity: 1 }}
                       transition={{ duration: 0.8, delay: 0.5 }}
                     />
                     <motion.path
@@ -89,8 +88,8 @@ export function BacktestingComingSoon() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       vectorEffect="non-scaling-stroke"
-                      initial={{ pathLength: 0 }}
-                      animate={inView ? { pathLength: 1 } : { pathLength: 0 }}
+                      initial={{ pathLength: 1 }}
+                      animate={{ pathLength: 1 }}
                       transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
                     />
                   </svg>

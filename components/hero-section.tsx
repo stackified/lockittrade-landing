@@ -154,8 +154,8 @@ export function HeroSection() {
               {/* Floating Widget: AI Rating (top-right) */}
               <motion.div
                 className="absolute -top-5 -right-4 lg:-right-10 z-20 hidden md:block"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.3 }}
               >
                 <motion.div
@@ -180,8 +180,8 @@ export function HeroSection() {
               {/* Floating Widget: Win-rate analysis (bottom-left) */}
               <motion.div
                 className="absolute bottom-16 -left-4 lg:-left-12 z-20 hidden md:block"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.5 }}
               >
                 <motion.div
@@ -218,8 +218,8 @@ export function HeroSection() {
               {/* Floating Widget: Summary (bottom-right) */}
               <motion.div
                 className="absolute bottom-24 -right-2 lg:-right-8 z-20 hidden md:block"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.7 }}
               >
                 <motion.div
@@ -245,8 +245,7 @@ export function HeroSection() {
             
             <motion.div
               className="mt-8 md:mt-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={{}}
               transition={{ duration: 1, delay: 1.5 }}
             >
               <PoweredByOpenAI />

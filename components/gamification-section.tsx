@@ -32,8 +32,8 @@ export function GamificationSection() {
       <div className="container max-w-5xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-16 sm:mb-24"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
+          animate={inView ? { y: 0 } : { y: 20 }}
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
@@ -66,8 +66,8 @@ export function GamificationSection() {
                 <motion.div
                   key={step.id}
                   className={`relative flex items-center gap-6 sm:gap-12 ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  initial={{ y: 30 }}
+                  animate={inView ? { y: 0 } : { y: 30 }}
                   transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
                 >
                   {/* Content Box */}

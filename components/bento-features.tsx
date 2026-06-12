@@ -75,8 +75,8 @@ export function BentoFeatures() {
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
+          animate={isInView ? { y: 0 } : { y: 20 }}
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
@@ -97,8 +97,8 @@ export function BentoFeatures() {
           {/* Box 1: AI Coach (Large, spans 2 columns) */}
           <motion.div 
             className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col gap-8 h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={isInView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A9E0]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -119,8 +119,8 @@ export function BentoFeatures() {
                     className={`rounded-xl p-3 md:p-4 text-xs md:text-sm text-zinc-300 border flex items-start gap-3 w-fit max-w-[90%] md:max-w-[80%] ${log.sender === "user" ? "ml-auto bg-[#00A9E0]/10 border-[#00A9E0]/20 text-white" : "mr-auto bg-white/5 border-white/5 hover:bg-white/10 transition-colors"} ${log.sender === "ai" && !hasInteracted ? "cursor-pointer" : ""}`}
                     onClick={() => log.sender === "ai" && !hasInteracted && handleAiClick(log.text)}
                     whileHover={log.sender === "ai" && !hasInteracted ? { scale: 1.02 } : {}}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ y: 10 }}
+                    animate={{ y: 0 }}
                   >
                     {log.sender === "ai" && <div className="w-2 h-2 rounded-full bg-[#00A9E0] mt-1.5 shadow-[0_0_8px_#00A9E0] shrink-0" />}
                     {log.text}
@@ -146,8 +146,8 @@ export function BentoFeatures() {
           {/* Box 2: Readiness Score (Tall, spans 1 col) */}
           <motion.div 
             className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col items-center gap-8 text-center h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={isInView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A9E0]/10 blur-[60px] rounded-full pointer-events-none" />
@@ -167,8 +167,8 @@ export function BentoFeatures() {
           {/* Box 3: Violations Tracker */}
           <motion.div 
             className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={isInView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="relative z-10 mb-6">
@@ -188,8 +188,8 @@ export function BentoFeatures() {
           {/* Box 4: Strategy Compliance */}
           <motion.div 
             className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={isInView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="relative z-10 mb-6">

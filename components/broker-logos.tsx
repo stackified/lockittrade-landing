@@ -28,8 +28,8 @@ export function BrokerLogos() {
 
       <motion.div
         className="container max-w-screen-xl mx-auto px-4 mb-8"
-        initial={{ opacity: 0, y: 10 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        initial={{ y: 10 }}
+        animate={inView ? { y: 0 } : { y: 10 }}
         transition={{ duration: 0.5 }}
       >
         <p className="text-zinc-500 text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-center">
