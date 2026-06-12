@@ -221,3 +221,28 @@ html {
     stroke-dashoffset: 36.79 !important;
   }
 }
+
+/* ── Mobile GPU-cost reduction ──────────────────────────────────────────────
+   Real iOS Safari (unlike virtualized BrowserStack devices) has hard GPU
+   memory/compositing limits. Many backdrop-filters + huge gaussian blurs make
+   every paint extremely expensive, so the page trickles in very slowly. On
+   small screens we drop backdrop-filter entirely (cards keep a solid-ish bg so
+   they stay legible) and cap the giant decorative blur orbs. Desktop is
+   untouched. */
+@media (max-width: 767px) {
+  .glass-panel,
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .glass-panel {
+    background: rgba(18, 18, 20, 0.94);
+  }
+  /* Cap oversized glow blurs (blur-[120px]..[150px]) to something cheap. */
+  .blur-\[120px\],
+  .blur-\[130px\],
+  .blur-\[140px\],
+  .blur-\[150px\] {
+    filter: blur(45px) !important;
+  }
+}

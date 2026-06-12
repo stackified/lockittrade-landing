@@ -37,6 +37,9 @@ const nextConfig = {
   basePath: basePath,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    // Baked at build time so we can tell which build a visitor is actually
+    // running (stale cache vs. latest deploy).
+    NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
   }
 }
 
