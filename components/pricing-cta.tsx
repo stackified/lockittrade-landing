@@ -20,15 +20,15 @@ export function PricingCTA() {
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           <motion.div
             className="text-center max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             <motion.h2
               className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: -20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
@@ -37,8 +37,8 @@ export function PricingCTA() {
 
             <motion.p
               className="text-base md:text-lg text-zinc-400 mb-10 max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: -20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
@@ -49,8 +49,8 @@ export function PricingCTA() {
             {/* Guarantees */}
             <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
@@ -58,8 +58,8 @@ export function PricingCTA() {
                 <motion.div
                   key={index}
                   className="flex items-center gap-2.5 text-zinc-300 justify-center bg-white/[0.02] border border-white/[0.05] p-3 rounded-2xl backdrop-blur-sm"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ x: -20 }}
+                  whileInView={{ x: 0 }}
                   transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
@@ -74,8 +74,8 @@ export function PricingCTA() {
             {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 1 }}
               viewport={{ once: true }}
             >
@@ -100,8 +100,8 @@ export function PricingCTA() {
             {/* Trust Indicators */}
             <motion.div
               className="mt-16 pt-10 border-t border-white/[0.05]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
               viewport={{ once: true }}
             >

@@ -180,27 +180,44 @@ html {
   }
 }
 
+/* IMPORTANT: classes do NOT set a base opacity:0. `both` fill-mode applies the
+   keyframe's `from` (opacity:0) only while the animation is queued/running, so
+   if the animation never runs (iOS Reduce Motion, throttling, JS-less) the
+   element falls back to its natural VISIBLE state instead of being stranded
+   invisible. This is what keeps the page from rendering blank. */
 .animate-fade-in-up {
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-in-down {
-  opacity: 0;
-  animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-in {
-  opacity: 0;
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-in-left {
-  opacity: 0;
-  animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fill-circle {
-  stroke-dashoffset: 283;
-  animation: fillCircle 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fillCircle 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Reduce Motion (common on iOS): skip the entrance animations entirely and
+   show everything immediately so content is never hidden behind motion. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-fade-in,
+  .animate-fade-in-left {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-fill-circle {
+    animation: none !important;
+    stroke-dashoffset: 36.79 !important;
+  }
 }

@@ -110,8 +110,8 @@ export function CommunitySection() {
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16 sm:mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={inView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
@@ -173,8 +173,8 @@ export function CommunitySection() {
           {/* Metrics Row */}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={inView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
              {[
@@ -191,8 +191,8 @@ export function CommunitySection() {
 
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={inView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Button

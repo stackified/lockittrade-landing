@@ -103,7 +103,6 @@ export function FeatureCard({
             <motion.div
               className="absolute inset-0 rounded-xl blur-md"
               style={{ backgroundColor: `${brandBlue}20` }}
-              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
             />

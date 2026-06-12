@@ -25,14 +25,14 @@ export function PricingHero() {
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.8 }}
         >
           {/* Pill badge */}
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: -10 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:bg-white/[0.05] transition-colors cursor-pointer justify-center"
           >
@@ -42,8 +42,8 @@ export function PricingHero() {
 
           <motion.h1
             className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-[1.05]"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: -20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Simple, Transparent <br className="hidden sm:block" />
@@ -52,8 +52,8 @@ export function PricingHero() {
 
           <motion.p
             className="text-lg md:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: -20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             Choose the plan that fits your trading journey. From beginners to prop firm professionals, we have the right
@@ -63,16 +63,16 @@ export function PricingHero() {
           {/* Benefits Grid */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 className="flex items-center gap-3 text-zinc-300 bg-white/[0.02] border border-white/[0.05] p-4.5 rounded-2xl backdrop-blur-sm"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ x: -20 }}
+                animate={{ x: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
               >
                 <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">

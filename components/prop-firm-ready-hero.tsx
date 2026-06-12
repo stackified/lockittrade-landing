@@ -46,14 +46,14 @@ export function PropFirmReadyHero() {
             {/* Left side - Content */}
             <motion.div
               className="lg:w-1/2 text-center lg:text-left"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: -20 }}
+              animate={{ x: 0 }}
               transition={{ duration: 0.8 }}
             >
               {/* Pill badge */}
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: -10 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:bg-white/[0.05] transition-colors cursor-pointer justify-center lg:justify-start"
                 onClick={() => setIsWaitlistModalOpen(true)}
@@ -102,8 +102,8 @@ export function PropFirmReadyHero() {
                   <motion.div
                     key={index}
                     className="flex items-center gap-3 text-zinc-300 justify-center lg:justify-start"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ y: 10 }}
+                    animate={{ y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                   >
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
@@ -118,8 +118,8 @@ export function PropFirmReadyHero() {
             {/* Right side - Score Display */}
             <motion.div
               className="lg:w-1/2 flex justify-center w-full"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: 20 }}
+              animate={{ x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="relative w-full max-w-md rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden">
@@ -169,7 +169,6 @@ export function PropFirmReadyHero() {
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <motion.div
                         className="text-5xl font-black text-white tracking-tight mb-1"
-                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 1.2 }}
                       >

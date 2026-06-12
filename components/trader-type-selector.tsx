@@ -78,14 +78,16 @@ function RadarChart({ stats, color }: { stats: any; color: string }) {
           )
         })}
 
-        {/* Data polygon */}
-        <motion.polygon
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1, points: points.join(" ") }}
-          transition={{ duration: 0.6, type: "spring" }}
+        {/* Data polygon — points set statically so it always renders valid
+            coordinates (animating the points string crashed on some browsers
+            with "Expected number, undefined"). The CSS transition smooths tab
+            changes without framer-motion mutating the points attribute. */}
+        <polygon
+          points={points.join(" ")}
           fill={`${color}40`}
           stroke={color}
           strokeWidth="2"
+          style={{ transition: "all 0.5s ease" }}
         />
 
         {/* Data points */}
@@ -94,13 +96,13 @@ function RadarChart({ stats, color }: { stats: any; color: string }) {
           const x = center + (val / 100) * radius * Math.cos(angle)
           const y = center + (val / 100) * radius * Math.sin(angle)
           return (
-            <motion.circle
+            <circle
               key={i}
-              initial={{ cx: center, cy: center }}
-              animate={{ cx: x, cy: y }}
-              transition={{ duration: 0.6, type: "spring" }}
+              cx={x}
+              cy={y}
               r="4"
               fill={color}
+              style={{ transition: "all 0.5s ease" }}
             />
           )
         })}
@@ -150,8 +152,8 @@ export function TraderTypeSelector() {
       <div className="container max-w-6xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
+          animate={inView ? { y: 0 } : { y: 20 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -165,8 +167,8 @@ export function TraderTypeSelector() {
         {/* Tab Selector */}
         <motion.div 
           className="flex justify-center mb-12 sm:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
+          animate={inView ? { y: 0 } : { y: 20 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="bg-white/5 backdrop-blur-md p-1.5 rounded-full border border-white/10 flex overflow-x-auto max-w-full">
@@ -201,8 +203,8 @@ export function TraderTypeSelector() {
           
           {/* Left: Interactive Radar Chart */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            initial={{ scale: 0.9 }}
+            animate={inView ? { scale: 1 } : { scale: 0.9 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="order-2 lg:order-1 glass-panel p-8 sm:p-12 rounded-[2.5rem] flex items-center justify-center relative"
           >
@@ -214,7 +216,7 @@ export function TraderTypeSelector() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}

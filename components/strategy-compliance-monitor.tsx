@@ -213,8 +213,7 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
         
         {filteredRules.length === 0 && (
           <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+            animate={{}} 
             className="flex-1 flex items-center justify-center text-zinc-500 text-sm"
           >
             No rules found for this category.

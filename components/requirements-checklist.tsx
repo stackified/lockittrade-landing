@@ -104,8 +104,8 @@ export function RequirementsChecklist() {
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
@@ -131,8 +131,8 @@ export function RequirementsChecklist() {
               {requirements.map((req, index) => (
                 <motion.div
                   key={req.id}
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ x: -15 }}
+                  whileInView={{ x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   viewport={{ once: true }}
                 >
@@ -162,8 +162,8 @@ export function RequirementsChecklist() {
             {/* CTA Section */}
             <motion.div
               className="text-center relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 md:p-12 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
@@ -202,8 +202,7 @@ export function RequirementsChecklist() {
         {showModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div 
-              className="absolute inset-0 bg-black/75 backdrop-blur-md" 
-              initial={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/75 backdrop-blur-md"
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowModal(false)} 
