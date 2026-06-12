@@ -52,14 +52,14 @@ export function ParticleBackground() {
   // Don't render particles on server to avoid hydration mismatch
   if (!mounted) {
     return (
-      <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div ref={ref} className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
       </div>
     )
   }
 
   return (
-    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div ref={ref} className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
 
       {/* Ambient glow orbs */}

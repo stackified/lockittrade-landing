@@ -209,6 +209,6 @@ export function AIGridBackground() {
   }, [])
 
   return (
-    <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 1 }} />
+    <canvas ref={canvasRef} className="hidden md:block absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 1 }} />
   )
 }
