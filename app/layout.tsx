@@ -187,13 +187,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        {/* Enhanced Structured Data with Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
+        {/* Mobile Debugging Console */}
+        <Script src="https://cdn.jsdelivr.net/npm/eruda" strategy="beforeInteractive" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          if (typeof window !== 'undefined') {
+            var interval = setInterval(function() {
+              if (window.eruda) {
+                window.eruda.init();
+                clearInterval(interval);
+              }
+            }, 100);
+          }
+        ` }} />
 
         {/* Additional favicon links for better browser support */}
         <link rel="icon" type="image/png" sizes="32x32" href={getAssetPath("/favicon.png")} />
