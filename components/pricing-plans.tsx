@@ -116,8 +116,8 @@ export function PricingPlans() {
           {/* Billing Toggle */}
           <motion.div
             className="flex justify-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
@@ -168,8 +168,8 @@ export function PricingPlans() {
               return (
                 <motion.div
                   key={plan.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 20 }}
+                  whileInView={{ y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className="relative flex"
@@ -290,8 +290,8 @@ export function PricingPlans() {
           {/* Enterprise CTA */}
           <motion.div
             className="text-center mt-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >

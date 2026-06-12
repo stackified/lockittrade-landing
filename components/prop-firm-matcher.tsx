@@ -131,8 +131,8 @@ export function PropFirmMatcher() {
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
@@ -148,8 +148,8 @@ export function PropFirmMatcher() {
             {propFirms.map((firm, index) => (
               <motion.div
                 key={firm.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 20 }}
+                whileInView={{ y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
               >
@@ -278,8 +278,8 @@ export function PropFirmMatcher() {
           {/* CTA */}
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >

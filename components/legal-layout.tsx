@@ -59,8 +59,8 @@ export function LegalLayout({ title, subtitle, lastUpdated, icon: Icon, sections
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00A9E0]/10 blur-[140px] rounded-full pointer-events-none" />
         <div className="container max-w-5xl mx-auto px-4 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
             className="flex flex-col items-start"
           >
@@ -107,8 +107,8 @@ export function LegalLayout({ title, subtitle, lastUpdated, icon: Icon, sections
               <motion.section
                 key={section.id}
                 id={section.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ y: 16 }}
+                whileInView={{ y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.5, delay: Math.min(i * 0.03, 0.2) }}
                 className="scroll-mt-28 bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-6 md:p-8 hover:border-white/10 transition-colors"

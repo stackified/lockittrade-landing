@@ -32,7 +32,7 @@ const SegmentedPulseBar = ({ proximity, color }: { proximity: number; color: str
         <motion.div
           key={i}
           className="h-1.5 flex-1 rounded-sm"
-          initial={{ opacity: 0, scaleY: 0 }}
+          initial={{ scaleY: 0 }}
           animate={{ 
             opacity: i < activeSegments ? 1 : 0.2,
             scaleY: 1
@@ -242,8 +242,8 @@ export function ViolationsTracker({ isActive = false }: ViolationsTrackerProps) 
               onMouseEnter={() => setHoveredId(violation.id)}
               onMouseLeave={() => setHoveredId(null)}
               layout
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ x: -20 }}
+              animate={{ x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Critical Pulse Effect */}

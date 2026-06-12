@@ -24,8 +24,8 @@ export function AffiliateSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Portal preview card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
+            animate={inView ? { y: 0 } : { y: 30 }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="order-2 lg:order-1 glass-panel rounded-[2rem] p-6 sm:p-8 relative overflow-hidden"
           >
@@ -45,8 +45,8 @@ export function AffiliateSection() {
                 {stats.map((stat, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    initial={{ scale: 0.9 }}
+                    animate={inView ? { scale: 1 } : { scale: 0.9 }}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                     className="p-4 rounded-xl bg-white/[0.03] border border-white/5"
                   >
@@ -70,8 +70,8 @@ export function AffiliateSection() {
 
           {/* Copy */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={inView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6 }}
             className="order-1 lg:order-2"
           >

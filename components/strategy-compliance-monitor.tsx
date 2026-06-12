@@ -176,8 +176,8 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
             <motion.div
               key={rule.id}
               layout
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{ scale: 0.95, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
               className="group relative bg-black/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between overflow-hidden backdrop-blur-md hover:bg-white/5 transition-colors cursor-default"

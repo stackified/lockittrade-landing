@@ -54,8 +54,8 @@ export function LeaderboardSection() {
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <motion.div
           className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ y: 20 }}
+          animate={inView ? { y: 0 } : { y: 20 }}
           transition={{ duration: 0.6 }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
@@ -73,8 +73,8 @@ export function LeaderboardSection() {
 
         <motion.div
           className="max-w-3xl mx-auto glass-panel rounded-[2rem] p-5 sm:p-8 relative overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          initial={{ y: 30 }}
+          animate={inView ? { y: 0 } : { y: 30 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A9E0]/10 blur-[80px] rounded-full pointer-events-none" />

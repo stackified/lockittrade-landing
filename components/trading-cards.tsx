@@ -10,15 +10,13 @@ export function TradingCards() {
 
   return (
     <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[500px] w-full">
-      <motion.div
-        className="absolute w-full h-full"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+      <div
+        className="absolute w-full h-full animate-fade-in-left"
+        style={{ animationDelay: "400ms" }}
       >
         {/* Win Rate Card - Adjusted positioning for mobile */}
         <Card
-          className={`absolute top-0 left-0 w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-black/40 border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-300 ${
+          className={`absolute top-0 left-0 w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-[#0d0d0f]/95 border-white/10 shadow-2xl transition-all duration-300 ${
             hovered === 0 ? "z-30 scale-[1.02]" : "z-10"
           }`}
           onMouseEnter={() => setHovered(0)}
@@ -62,7 +60,7 @@ export function TradingCards() {
 
         {/* Violations Card - Reduced mobile spacing */}
         <Card
-          className={`absolute top-[60px] sm:top-[80px] md:top-[100px] lg:top-[120px] left-[15px] sm:left-[20px] md:left-[30px] lg:left-[80px] w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-black/40 border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-300 ${
+          className={`absolute top-[60px] sm:top-[80px] md:top-[100px] lg:top-[120px] left-[15px] sm:left-[20px] md:left-[30px] lg:left-[80px] w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-[#0d0d0f]/95 border-white/10 shadow-2xl transition-all duration-300 ${
             hovered === 1 ? "z-30" : "z-20"
           }`}
           onMouseEnter={() => setHovered(1)}
@@ -106,7 +104,7 @@ export function TradingCards() {
 
         {/* AI Score Card - Reduced mobile spacing */}
         <Card
-          className={`absolute top-[120px] sm:top-[160px] md:top-[200px] lg:top-[240px] left-[30px] sm:left-[40px] md:left-[60px] lg:left-[160px] w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-black/40 border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-300 ${
+          className={`absolute top-[120px] sm:top-[160px] md:top-[200px] lg:top-[240px] left-[30px] sm:left-[40px] md:left-[60px] lg:left-[160px] w-[90%] sm:w-[85%] md:w-[85%] lg:w-[80%] p-3 sm:p-4 md:p-6 bg-[#0d0d0f]/95 border-white/10 shadow-2xl transition-all duration-300 ${
             hovered === 2 ? "z-30 scale-[1.02]" : "z-30"
           }`}
           onMouseEnter={() => setHovered(2)}
@@ -123,7 +121,7 @@ export function TradingCards() {
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   <circle cx="50" cy="50" r="45" fill="none" stroke="#27272a" strokeWidth="10" />
-                  <motion.circle
+                  <circle
                     cx="50"
                     cy="50"
                     r="45"
@@ -132,11 +130,10 @@ export function TradingCards() {
                     strokeWidth="10"
                     strokeLinecap="round"
                     strokeDasharray="283"
-                    initial={{ strokeDashoffset: 283 }}
-                    animate={{ strokeDashoffset: 283 * (1 - 0.87) }}
-                    transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                    className="animate-fill-circle"
+                    style={{ animationDelay: "500ms" }}
                   />
-                  <motion.circle
+                  <circle
                     cx="50"
                     cy="50"
                     r="45"
@@ -146,20 +143,17 @@ export function TradingCards() {
                     strokeLinecap="round"
                     opacity={0.6}
                     strokeDasharray="283"
-                    initial={{ strokeDashoffset: 283 }}
-                    animate={{ strokeDashoffset: 283 * (1 - 0.87) }}
-                    transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                    className="animate-fill-circle"
+                    style={{ animationDelay: "500ms" }}
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.span
-                    className="text-sm sm:text-base md:text-lg lg:text-3xl font-bold text-white"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.5 }}
+                  <span
+                    className="text-sm sm:text-base md:text-lg lg:text-3xl font-bold text-white animate-fade-in"
+                    style={{ animationDelay: "1500ms" }}
                   >
                     87%
-                  </motion.span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -180,7 +174,7 @@ export function TradingCards() {
             </div>
           </div>
         </Card>
-      </motion.div>
+      </div>
     </div>
   )
 }

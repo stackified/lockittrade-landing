@@ -65,8 +65,8 @@ export function NewsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Copy */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ y: 20 }}
+            animate={inView ? { y: 0 } : { y: 20 }}
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
@@ -98,8 +98,8 @@ export function NewsSection() {
 
           {/* Calendar card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            initial={{ y: 30 }}
+            animate={inView ? { y: 0 } : { y: 30 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="glass-panel rounded-[2rem] p-5 sm:p-6 relative overflow-hidden"
           >
@@ -117,8 +117,8 @@ export function NewsSection() {
                 {events.map((event, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                    initial={{ x: 20 }}
+                    animate={inView ? { x: 0 } : { x: 20 }}
                     transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                     className="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#00A9E0]/30 hover:bg-white/[0.05] transition-colors"
                   >

@@ -132,8 +132,8 @@ export function PerformanceTicker() {
       <div className="container max-w-screen-xl mx-auto px-4 mb-12">
         <motion.div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
@@ -180,8 +180,8 @@ function PerformanceCard({ card, index }: PerformanceCardProps) {
   return (
     <motion.div
       className="flex-shrink-0 snap-center min-w-[280px] md:min-w-[340px] bg-white/5 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-[#00A9E0]/30 transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ y: 20 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 * index }}
       whileHover={{ scale: 1.05, borderColor: "rgba(0, 169, 224, 0.5)" }}
     >
