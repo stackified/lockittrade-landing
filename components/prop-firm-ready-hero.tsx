@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertTriangle, XCircle, TrendingUp, ChevronRight } from "lucide-react"
 import { WaitlistModal } from "@/components/waitlist-modal"
@@ -44,24 +43,17 @@ export function PropFirmReadyHero() {
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left side - Content */}
-            <motion.div
-              className="lg:w-1/2 text-center lg:text-left"
-              initial={{ x: -20 }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="lg:w-1/2 text-center lg:text-left animate-fade-in-left">
               {/* Pill badge */}
-              <motion.div
-                initial={{ y: -10 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:bg-white/[0.05] transition-colors cursor-pointer justify-center lg:justify-start"
+              <div
+                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 hover:bg-white/[0.05] transition-colors cursor-pointer justify-center lg:justify-start animate-fade-in-down"
+                style={{ animationDelay: "100ms" }}
                 onClick={() => setIsWaitlistModalOpen(true)}
               >
                 <span className="flex h-2 w-2 rounded-full bg-[#00A9E0] shadow-[0_0_8px_#00A9E0]"></span>
                 <span className="text-zinc-300 text-xs font-semibold uppercase tracking-wider">Live Readiness Assessment</span>
                 <ChevronRight className="w-3.5 h-3.5 text-zinc-500" />
-              </motion.div>
+              </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05] mb-6">
                 Are You <br className="hidden sm:block" />
@@ -99,28 +91,24 @@ export function PropFirmReadyHero() {
                   "Prop firm requirements matching",
                   "Personalized improvement plan",
                 ].map((benefit, index) => (
-                  <motion.div
+                  <div
                     key={index}
-                    className="flex items-center gap-3 text-zinc-300 justify-center lg:justify-start"
-                    initial={{ y: 10 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    className="flex items-center gap-3 text-zinc-300 justify-center lg:justify-start animate-fade-in-up"
+                    style={{ animationDelay: `${200 + index * 100}ms` }}
                   >
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                       <CheckCircle className="h-3 w-3 text-emerald-400" />
                     </div>
                     <span className="text-sm font-medium">{benefit}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Right side - Score Display */}
-            <motion.div
-              className="lg:w-1/2 flex justify-center w-full"
-              initial={{ x: 20 }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <div
+              className="lg:w-1/2 flex justify-center w-full animate-fade-in"
+              style={{ animationDelay: "200ms" }}
             >
               <div className="relative w-full max-w-md rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden">
                 {/* Glass reflection overlay */}
@@ -147,7 +135,7 @@ export function PropFirmReadyHero() {
                       {/* Background circle */}
                       <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="7" />
                       {/* Progress circle */}
-                      <motion.circle
+                      <circle
                         cx="70"
                         cy="70"
                         r="60"
@@ -156,9 +144,7 @@ export function PropFirmReadyHero() {
                         strokeWidth="7"
                         strokeLinecap="round"
                         strokeDasharray="377"
-                        initial={{ strokeDashoffset: 377 }}
-                        animate={{ strokeDashoffset: 377 * (1 - readinessScore / 100) }}
-                        transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+                        strokeDashoffset={377 * (1 - readinessScore / 100)}
                         style={{
                           filter: `drop-shadow(0 0 8px ${getScoreColor(readinessScore)})`,
                         }}
@@ -167,13 +153,9 @@ export function PropFirmReadyHero() {
 
                     {/* Score text */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <motion.div
-                        className="text-5xl font-black text-white tracking-tight mb-1"
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 1.2 }}
-                      >
+                      <div className="text-5xl font-black text-white tracking-tight mb-1">
                         {readinessScore}%
-                      </motion.div>
+                      </div>
                       <div className={`flex items-center gap-1.5 ${status.color}`}>
                         <StatusIcon className="h-4 w-4" />
                         <span className="text-xs font-bold uppercase tracking-wider">{status.text}</span>
@@ -197,7 +179,7 @@ export function PropFirmReadyHero() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

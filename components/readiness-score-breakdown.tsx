@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, ChevronUp, TrendingUp, Shield, Target, BarChart3, CheckSquare, Clock, AlertTriangle } from "lucide-react"
 
 interface MetricData {
@@ -120,20 +119,14 @@ export function ReadinessScoreBreakdown() {
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-[#9C5FFF]/[0.05] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ y: 20 }}
-          whileInView={{ y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
             Score <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.3)]">Breakdown</span>
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Your readiness score is calculated from 6 key metrics, each weighted by importance to prop firms.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid gap-4 max-w-4xl mx-auto">
           {metrics.map((metric, index) => {
@@ -141,12 +134,10 @@ export function ReadinessScoreBreakdown() {
             const isExpanded = expandedMetric === metric.id
 
             return (
-              <motion.div
+              <div
                 key={metric.id}
-                initial={{ y: 15 }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div
                   className={`rounded-2xl border backdrop-blur-xl transition-all duration-300 overflow-hidden ${
@@ -209,33 +200,22 @@ export function ReadinessScoreBreakdown() {
                     {/* Progress bar */}
                     <div className="mt-5">
                       <div className="w-full bg-white/[0.03] border border-white/[0.05] rounded-full h-2">
-                        <motion.div
+                        <div
                           className="h-2 rounded-full transition-all duration-500"
                           style={{
                             backgroundColor: getProgressColor(metric.status),
                             width: `${Math.min((metric.current / metric.target) * 100, 100)}%`,
                             boxShadow: `0 0 12px ${getProgressColor(metric.status)}a0`,
                           }}
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${Math.min((metric.current / metric.target) * 100, 100)}%` }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                          viewport={{ once: true }}
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Expanded content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        className="px-6 pb-6 border-t border-white/[0.05]"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                      >
-                        <div className="pt-5 space-y-4">
+                  {isExpanded && (
+                    <div className="px-6 pb-6 border-t border-white/[0.05] animate-fade-in">
+                      <div className="pt-5 space-y-4">
                           <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">{metric.description}</p>
                           
                           <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4">
@@ -254,12 +234,11 @@ export function ReadinessScoreBreakdown() {
                               </div>
                             </div>
                           )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>

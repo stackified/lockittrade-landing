@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useEffect } from "react"
-import { motion } from "framer-motion"
 import { ArrowUp, ArrowDown } from "lucide-react"
 
 // Sample performance data for the cards
@@ -130,12 +129,7 @@ export function PerformanceTicker() {
       <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#00A9E0]/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 mb-12">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             Real Traders. Real Data. Real Results.
           </h2>
@@ -143,7 +137,7 @@ export function PerformanceTicker() {
             These are the kind of metrics Lock It Trade helps you achieve. Scroll through to see examples of what our
             users see inside their dashboard.
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scrolling ticker container */}
@@ -178,12 +172,9 @@ interface PerformanceCardProps {
 
 function PerformanceCard({ card, index }: PerformanceCardProps) {
   return (
-    <motion.div
-      className="flex-shrink-0 snap-center min-w-[280px] md:min-w-[340px] bg-white/5 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-[#00A9E0]/30 transition-all duration-300"
-      initial={{ y: 20 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 * index }}
-      whileHover={{ scale: 1.05, borderColor: "rgba(0, 169, 224, 0.5)" }}
+    <div
+      className="flex-shrink-0 snap-center min-w-[280px] md:min-w-[340px] bg-white/5 backdrop-blur-sm border border-zinc-800/50 rounded-xl overflow-hidden hover:border-[#00A9E0]/50 hover:scale-105 transition-all duration-300 animate-fade-in-up"
+      style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Top half - UI placeholder */}
       <div className="p-4">
@@ -222,7 +213,7 @@ function PerformanceCard({ card, index }: PerformanceCardProps) {
           />
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

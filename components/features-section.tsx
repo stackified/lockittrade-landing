@@ -1,8 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import { motion, useAnimation } from "framer-motion"
-import { useInView } from "react-intersection-observer"
 import { FeatureCard } from "@/components/feature-card"
 import { PoweredByOpenAI } from "@/components/powered-by-openai"
 import { AlertTriangle, Scale, Brain, Clock, ClipboardCheck, Flame } from "lucide-react"
@@ -48,38 +45,6 @@ const features = [
 ]
 
 export function FeaturesSection() {
-  const controls = useAnimation()
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible")
-    }
-  }, [controls, inView])
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const titleVariants = {
-    hidden: { y: 20 },
-    visible: {
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  }
-
   return (
     <section
       id="features"
@@ -123,13 +88,7 @@ export function FeaturesSection() {
       </div>
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          ref={ref}
-          className="text-center mb-16"
-          variants={titleVariants}
-          initial="hidden"
-          animate={controls}
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             Powerful Features for Serious Traders
           </h2>
@@ -137,17 +96,12 @@ export function FeaturesSection() {
             Lock It Trade provides the tools you need to analyze your performance, identify strengths, and get ready for
             funding.
           </p>
-        </motion.div>
+        </div>
 
         {/* OpenAI Badge */}
         <PoweredByOpenAI />
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={controls}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, index) => (
             <FeatureCard
               key={feature.id}
@@ -157,7 +111,7 @@ export function FeaturesSection() {
               index={index}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

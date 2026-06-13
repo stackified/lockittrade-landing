@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, ChevronUp } from "lucide-react"
 
 interface FAQItem {
@@ -55,13 +54,7 @@ export function PricingFAQ() {
       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-[#9C5FFF]/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ y: 20 }}
-          whileInView={{ y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.3)]">Questions</span>
           </h2>
@@ -69,20 +62,17 @@ export function PricingFAQ() {
             Got questions? We&apos;ve got answers. If you can&apos;t find what you&apos;re looking for, feel free to reach out to our
             support team.
           </p>
-        </motion.div>
+        </div>
 
         <div className="max-w-3xl mx-auto">
           {faqs.map((faq, index) => {
             const isExpanded = openIndex === index
 
             return (
-              <motion.div
+              <div
                 key={index}
-                initial={{ y: 15 }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="mb-4"
+                className="mb-4 animate-fade-in-up"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div
                   className={`rounded-2xl border backdrop-blur-xl transition-all duration-300 overflow-hidden ${
@@ -105,34 +95,23 @@ export function PricingFAQ() {
                     </div>
                   </button>
 
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 border-t border-white/[0.05]">
-                          <p className="text-zinc-300 leading-relaxed pt-4 text-sm sm:text-base">{faq.answer}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {isExpanded && (
+                    <div className="overflow-hidden animate-fade-in">
+                      <div className="px-6 pb-6 border-t border-white/[0.05]">
+                        <p className="text-zinc-300 leading-relaxed pt-4 text-sm sm:text-base">{faq.answer}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>
 
         {/* Contact Support */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ y: 20 }}
-          whileInView={{ y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
+        <div
+          className="text-center mt-12 animate-fade-in-up"
+          style={{ animationDelay: "400ms" }}
         >
           <p className="text-zinc-500 text-sm mb-3 font-semibold uppercase tracking-wider">Still have questions?</p>
           <a
@@ -141,7 +120,7 @@ export function PricingFAQ() {
           >
             Contact our support team →
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
