@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState, type ReactNode } from "react"
-import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Mail, type LucideIcon } from "lucide-react"
@@ -58,12 +57,7 @@ export function LegalLayout({ title, subtitle, lastUpdated, icon: Icon, sections
       <section className="relative overflow-hidden pt-36 pb-16 border-b border-white/5">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00A9E0]/10 blur-[140px] rounded-full pointer-events-none" />
         <div className="container max-w-5xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-start"
-          >
+          <div className="flex flex-col items-start animate-fade-in-up">
             <div className="w-14 h-14 rounded-2xl bg-[#00A9E0]/10 border border-[#00A9E0]/20 flex items-center justify-center mb-6">
               <Icon className="w-7 h-7 text-[#00A9E0]" />
             </div>
@@ -73,7 +67,7 @@ export function LegalLayout({ title, subtitle, lastUpdated, icon: Icon, sections
               <span className="w-1.5 h-1.5 rounded-full bg-[#00A9E0]" />
               Last updated: {lastUpdated}
             </span>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -104,21 +98,18 @@ export function LegalLayout({ title, subtitle, lastUpdated, icon: Icon, sections
           {/* Content */}
           <div className="space-y-5 min-w-0">
             {sections.map((section, i) => (
-              <motion.section
+              <section
                 key={section.id}
                 id={section.id}
-                initial={{ y: 16 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.5, delay: Math.min(i * 0.03, 0.2) }}
-                className="scroll-mt-28 bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-6 md:p-8 hover:border-white/10 transition-colors"
+                style={{ animationDelay: `${Math.min(i * 30, 200)}ms` }}
+                className="scroll-mt-28 bg-zinc-900/40 backdrop-blur-sm border border-white/5 rounded-2xl p-6 md:p-8 hover:border-white/10 transition-colors animate-fade-in-up"
               >
                 <h2 className="text-xl md:text-2xl font-semibold text-white mb-4 flex items-center gap-3">
                   <span className="text-sm font-mono text-[#00A9E0]/70">{String(i + 1).padStart(2, "0")}</span>
                   {section.title}
                 </h2>
                 <div className="text-zinc-300 space-y-3 leading-relaxed text-[15px]">{section.content}</div>
-              </motion.section>
+              </section>
             ))}
 
             {/* Contact footer card */}

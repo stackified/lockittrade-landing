@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -125,12 +124,7 @@ Sent from Lock It Trade Contact Form
 
   if (isSuccess) {
     return (
-      <motion.div
-        className="text-center py-12"
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="text-center py-12 animate-fade-in">
         <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle className="w-8 h-8 text-green-400" />
         </div>
@@ -143,7 +137,7 @@ Sent from Lock It Trade Contact Form
         >
           Send Another Message
         </Button>
-      </motion.div>
+      </div>
     )
   }
 
@@ -156,11 +150,7 @@ Sent from Lock It Trade Contact Form
 
       {/* Error Message with Mailto Fallback */}
       {submitError && (
-        <motion.div
-          className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg"
-          initial={{ y: -10 }}
-          animate={{ y: 0 }}
-        >
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg animate-fade-in-down">
           <div className="flex items-start gap-3 mb-3">
             <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
             <span className="text-red-400 text-sm">{submitError}</span>
@@ -178,7 +168,7 @@ Sent from Lock It Trade Contact Form
               <ExternalLink className="w-3 h-3" />
             </a>
           </div>
-        </motion.div>
+        </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Star, Zap } from "lucide-react"
 import { WaitlistModal } from "@/components/waitlist-modal"
@@ -114,13 +113,7 @@ export function PricingPlans() {
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
           {/* Billing Toggle */}
-          <motion.div
-            className="flex justify-center mb-16"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="flex justify-center mb-16 animate-fade-in-up">
             <div className="bg-white/[0.03] border border-white/10 backdrop-blur-md rounded-full p-1.5 flex items-center shadow-[0_4px_24px_rgba(0,0,0,0.5)] relative">
               <button
                 onClick={() => setIsYearly(false)}
@@ -130,11 +123,7 @@ export function PricingPlans() {
               >
                 Monthly
                 {!isYearly && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-[#00A9E0] rounded-full -z-10 shadow-[0_0_15px_rgba(0,169,224,0.4)]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
+                  <div className="absolute inset-0 bg-[#00A9E0] rounded-full -z-10 shadow-[0_0_15px_rgba(0,169,224,0.4)]" />
                 )}
               </button>
               <button
@@ -145,18 +134,14 @@ export function PricingPlans() {
               >
                 Yearly
                 {isYearly && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-[#00A9E0] rounded-full -z-10 shadow-[0_0_15px_rgba(0,169,224,0.4)]"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
+                  <div className="absolute inset-0 bg-[#00A9E0] rounded-full -z-10 shadow-[0_0_15px_rgba(0,169,224,0.4)]" />
                 )}
                 <span className="absolute -top-3.5 -right-3 px-2 py-0.5 rounded-full bg-emerald-500 text-[10px] font-black text-black uppercase tracking-wider scale-90 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
                   Save
                 </span>
               </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Pricing Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
@@ -166,13 +151,10 @@ export function PricingPlans() {
               const savings = getYearlySavings(plan)
 
               return (
-                <motion.div
+                <div
                   key={plan.id}
-                  initial={{ y: 20 }}
-                  whileInView={{ y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative flex"
+                  className="relative flex animate-fade-in-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div
                     className={`w-full rounded-3xl border p-8 flex flex-col justify-between transition-all duration-300 relative overflow-hidden backdrop-blur-xl ${
@@ -282,18 +264,15 @@ export function PricingPlans() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
 
           {/* Enterprise CTA */}
-          <motion.div
-            className="text-center mt-20"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+          <div
+            className="text-center mt-20 animate-fade-in-up"
+            style={{ animationDelay: "400ms" }}
           >
             <div className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 md:p-12 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 max-w-2xl mx-auto overflow-hidden">
               {/* Background ambient glow inside CTA card */}
@@ -310,7 +289,7 @@ export function PricingPlans() {
                 Contact Enterprise Sales
               </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
 
 interface Trade {
   id: string
@@ -94,13 +93,10 @@ export function RiskRewardBreakdown({ isActive = false }: RiskRewardBreakdownPro
       {/* Trade Cards Grid */}
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
         {trades.map((trade, index) => (
-          <motion.div
+          <div
             key={trade.id}
-            className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-zinc-700 transition-all duration-300"
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ scale: 1.02 }}
+            className="bg-zinc-900/90 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-zinc-700 hover:scale-[1.02] transition-all duration-300 animate-fade-in-up"
+            style={{ animationDelay: `${index * 200}ms` }}
           >
             {/* Trade Header */}
             <div className="flex items-center justify-between mb-6">
@@ -150,22 +146,17 @@ export function RiskRewardBreakdown({ isActive = false }: RiskRewardBreakdownPro
                 <div className="text-green-400 text-sm font-medium">{trade.takeProfit}</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       {/* Simple Summary */}
-      <motion.div
-        className="text-center"
-        initial={{ y: 20 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-      >
+      <div className="text-center animate-fade-in-up" style={{ animationDelay: "800ms" }}>
         <div className="bg-zinc-900/50 rounded-lg px-6 py-3 inline-block">
           <span className="text-slate-400 text-sm mr-2">Average R:R:</span>
           <span className="text-[#00A9E0] font-bold text-lg">{averageRR.toFixed(1)}:1</span>
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }

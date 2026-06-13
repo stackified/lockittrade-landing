@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertTriangle, XCircle, Eye } from "lucide-react"
 import { WaitlistModal } from "@/components/waitlist-modal"
@@ -102,13 +101,7 @@ export function RequirementsChecklist() {
         <div className="absolute top-1/4 right-1/4 w-[450px] h-[450px] bg-[#00A9E0]/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
               Prop Firm <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.3)]">Requirements</span>
             </h2>
@@ -124,17 +117,15 @@ export function RequirementsChecklist() {
               </span>
               <span className="text-zinc-400 text-xs font-semibold uppercase tracking-wider">requirements met</span>
             </div>
-          </motion.div>
+          </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid gap-4.5 mb-12">
               {requirements.map((req, index) => (
-                <motion.div
+                <div
                   key={req.id}
-                  initial={{ x: -15 }}
-                  whileInView={{ x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
+                  className="animate-fade-in-left"
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className={`p-6 rounded-2xl border backdrop-blur-xl transition-all duration-300 ${getStatusColor(req.status)}`}>
                     <div className="flex items-start gap-4">
@@ -155,17 +146,14 @@ export function RequirementsChecklist() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* CTA Section */}
-            <motion.div
-              className="text-center relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 md:p-12 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden"
-              initial={{ y: 20 }}
-              whileInView={{ y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+            <div
+              className="text-center relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 md:p-12 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 overflow-hidden animate-fade-in-up"
+              style={{ animationDelay: "200ms" }}
             >
               {/* Background ambient glow inside CTA card */}
               <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/5 h-20 bg-[#00A9E0]/15 blur-[40px] rounded-[100%] pointer-events-none" />
@@ -192,27 +180,20 @@ export function RequirementsChecklist() {
                   View Full Requirements
                 </Button>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Requirements Modal */}
-      <AnimatePresence>
-        {showModal && (
+      {showModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div 
-              className="absolute inset-0 bg-black/75 backdrop-blur-md"
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowModal(false)} 
+            <div
+              className="absolute inset-0 bg-black/75 backdrop-blur-md animate-fade-in"
+              onClick={() => setShowModal(false)}
             />
-            <motion.div 
-              className="relative bg-[#0d0d0d]/90 border border-white/[0.08] backdrop-blur-2xl rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 z-10"
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.2 }}
+            <div
+              className="relative bg-[#0d0d0d]/90 border border-white/[0.08] backdrop-blur-2xl rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 z-10 animate-fade-in-up"
             >
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl md:text-2xl font-black text-white tracking-tight">Prop Firm Requirements</h3>
@@ -261,10 +242,9 @@ export function RequirementsChecklist() {
               >
                 Close
               </Button>
-            </motion.div>
+            </div>
           </div>
         )}
-      </AnimatePresence>
 
       <WaitlistModal isOpen={isWaitlistModalOpen} onClose={() => setIsWaitlistModalOpen(false)} />
     </>

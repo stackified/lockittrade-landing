@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import type { LucideIcon } from "lucide-react"
 
@@ -25,19 +24,7 @@ export function FeatureCard({
   const [isHovered, setIsHovered] = useState(false)
 
   // Different animation delays based on index for staggered entrance
-  const delay = 0.1 + index * 0.1
-
-  const itemVariants = {
-    hidden: { y: 20 },
-    visible: {
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay,
-        ease: "easeOut" as const,
-      },
-    },
-  }
+  const delayMs = 100 + index * 100
 
   // Define colors as constants to avoid dynamic class issues
   const brandBlue = "#00A9E0"
@@ -46,7 +33,10 @@ export function FeatureCard({
   const iconShadowSubtle = "0_0_15px_rgba(0,169,224,0.3)"
 
   return (
-    <motion.div variants={itemVariants} whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }} className="h-full">
+    <div
+      className="h-full animate-fade-in-up transition-transform duration-300 hover:scale-105"
+      style={{ animationDelay: `${delayMs}ms` }}
+    >
       <Card
         className={`relative h-full p-6 md:p-8 rounded-2xl overflow-hidden transition-all duration-300 ${
           lightMode
@@ -100,11 +90,9 @@ export function FeatureCard({
             <Icon size={24} strokeWidth={isHovered ? 2.5 : 2} className="transition-all duration-300" />
           </div>
           {isHovered && (
-            <motion.div
-              className="absolute inset-0 rounded-xl blur-md"
+            <div
+              className="absolute inset-0 rounded-xl blur-md animate-fade-in"
               style={{ backgroundColor: `${brandBlue}20` }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
             />
           )}
         </div>
@@ -121,6 +109,6 @@ export function FeatureCard({
 
         <p className={`text-sm md:text-base ${lightMode ? "text-zinc-600" : "text-zinc-400"}`}>{description}</p>
       </Card>
-    </motion.div>
+    </div>
   )
 }

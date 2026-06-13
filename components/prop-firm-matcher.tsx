@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, XCircle, ExternalLink, Star } from "lucide-react"
@@ -129,29 +128,21 @@ export function PropFirmMatcher() {
         <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#9C5FFF]/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-4">
               Prop Firm <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#00A9E0] to-[#007ba3] filter drop-shadow-[0_0_30px_rgba(0,169,224,0.3)]">Matcher</span>
             </h2>
             <p className="text-zinc-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
               Based on your trading performance, here are the prop firms that best match your profile.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 max-w-6xl mx-auto mb-16">
             {propFirms.map((firm, index) => (
-              <motion.div
+              <div
                 key={firm.id}
-                initial={{ y: 20 }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-6 md:p-8 hover:border-white/20 transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.5)] ring-1 ring-white/10 overflow-hidden group">
                   {/* Glass sheen overlay */}
@@ -185,15 +176,12 @@ export function PropFirmMatcher() {
                           <span className="text-[#00A9E0] font-extrabold text-sm tracking-tight">{firm.compatibility}%</span>
                         </div>
                         <div className="w-full bg-white/[0.03] border border-white/[0.05] rounded-full h-2">
-                          <motion.div
+                          <div
                             className="bg-[#00A9E0] h-2 rounded-full transition-all duration-1000"
-                            style={{ 
+                            style={{
                               width: `${firm.compatibility}%`,
                               boxShadow: "0 0 10px rgba(0,169,224,0.6)"
                             }}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${firm.compatibility}%` }}
-                            viewport={{ once: true }}
                           />
                         </div>
                       </div>
@@ -271,17 +259,14 @@ export function PropFirmMatcher() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* CTA */}
-          <motion.div
-            className="text-center"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+          <div
+            className="text-center animate-fade-in-up"
+            style={{ animationDelay: "200ms" }}
           >
             <div className="relative rounded-3xl border border-white/[0.08] bg-[#0a0a0a]/60 backdrop-blur-xl p-8 md:p-12 shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] ring-1 ring-white/10 max-w-3xl mx-auto overflow-hidden">
               {/* Background ambient glow inside CTA card */}
@@ -299,7 +284,7 @@ export function PropFirmMatcher() {
                 Start for free
               </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
