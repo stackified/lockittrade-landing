@@ -1,15 +1,12 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { useState } from "react"
 import { AIReadinessGauge } from "@/components/ai-readiness-gauge"
 import { ViolationsTracker } from "@/components/violations-tracker"
 import { StrategyComplianceMonitor } from "@/components/strategy-compliance-monitor"
 import { Brain, Sparkles, Target, Shield, Zap, ArrowUp } from "lucide-react"
 
 export function BentoFeatures() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: true, amount: 0.1 })
   const [chatLogs, setChatLogs] = useState<{text: string, sender: "ai"|"user"}[]>([
     {text: "Analyzing your psychological patterns...", sender: "ai"},
     {text: "Warning: Detected potential revenge trading behavior.", sender: "ai"},
@@ -65,7 +62,7 @@ export function BentoFeatures() {
   }
 
   return (
-    <section id="features" className="relative bg-black pt-12 sm:pt-20 pb-12 sm:pb-16 overflow-hidden" ref={containerRef}>
+    <section id="features" className="relative bg-black pt-12 sm:pt-20 pb-12 sm:pb-16 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#00A9E0]/10 blur-[120px] rounded-full" />
@@ -73,11 +70,8 @@ export function BentoFeatures() {
       </div>
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24"
-          initial={{ y: 20 }}
-          animate={isInView ? { y: 0 } : { y: 20 }}
-          transition={{ duration: 0.6 }}
+        <div
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-24 animate-fade-in-up"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
             <Sparkles size={16} />
@@ -89,17 +83,15 @@ export function BentoFeatures() {
           <p className="text-lg text-zinc-400">
             Ditch the spreadsheets. Our AI-powered suite gives you the edge institutional traders use, all inside a beautifully simple dashboard.
           </p>
-        </motion.div>
+        </div>
 
         {/* BENTO GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           
           {/* Box 1: AI Coach (Large, spans 2 columns) */}
-          <motion.div 
-            className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col gap-8 h-full"
-            initial={{ y: 20 }}
-            animate={isInView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <div
+            className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col gap-8 h-full animate-fade-in-up"
+            style={{ animationDelay: "100ms" }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A9E0]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
@@ -114,17 +106,14 @@ export function BentoFeatures() {
             <div className="relative z-10 bg-black/40 border border-white/10 rounded-2xl p-4 md:p-6 backdrop-blur-md flex-1 min-h-[260px] max-h-[600px] w-full flex flex-col overflow-hidden group-hover:border-[#00A9E0]/30 transition-colors">
               <div className="space-y-3 mb-4 overflow-y-auto flex-1 pr-2 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {chatLogs.map((log, i) => (
-                  <motion.div 
-                    key={i} 
-                    className={`rounded-xl p-3 md:p-4 text-xs md:text-sm text-zinc-300 border flex items-start gap-3 w-fit max-w-[90%] md:max-w-[80%] ${log.sender === "user" ? "ml-auto bg-[#00A9E0]/10 border-[#00A9E0]/20 text-white" : "mr-auto bg-white/5 border-white/5 hover:bg-white/10 transition-colors"} ${log.sender === "ai" && !hasInteracted ? "cursor-pointer" : ""}`}
+                  <div
+                    key={i}
+                    className={`rounded-xl p-3 md:p-4 text-xs md:text-sm text-zinc-300 border flex items-start gap-3 w-fit max-w-[90%] md:max-w-[80%] animate-fade-in-up ${log.sender === "user" ? "ml-auto bg-[#00A9E0]/10 border-[#00A9E0]/20 text-white" : "mr-auto bg-white/5 border-white/5 hover:bg-white/10 transition-colors"} ${log.sender === "ai" && !hasInteracted ? "cursor-pointer hover:scale-[1.02] transition-transform" : ""}`}
                     onClick={() => log.sender === "ai" && !hasInteracted && handleAiClick(log.text)}
-                    whileHover={log.sender === "ai" && !hasInteracted ? { scale: 1.02 } : {}}
-                    initial={{ y: 10 }}
-                    animate={{ y: 0 }}
                   >
                     {log.sender === "ai" && <div className="w-2 h-2 rounded-full bg-[#00A9E0] mt-1.5 shadow-[0_0_8px_#00A9E0] shrink-0" />}
                     {log.text}
-                  </motion.div>
+                  </div>
                 ))}
               </div>
               {/* Interactive input */}
@@ -141,14 +130,12 @@ export function BentoFeatures() {
                  </button>
               </form>
             </div>
-          </motion.div>
+          </div>
 
           {/* Box 2: Readiness Score (Tall, spans 1 col) */}
-          <motion.div 
-            className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col items-center gap-8 text-center h-full"
-            initial={{ y: 20 }}
-            animate={isInView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
+            className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col items-center gap-8 text-center h-full animate-fade-in-up"
+            style={{ animationDelay: "200ms" }}
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A9E0]/10 blur-[60px] rounded-full pointer-events-none" />
             <div className="relative z-10 w-full mb-6 flex flex-col items-center">
@@ -160,16 +147,14 @@ export function BentoFeatures() {
             </div>
             
             <div className="w-full scale-90 sm:scale-100 origin-center">
-              <AIReadinessGauge isActive={isInView} targetScore={92} />
+              <AIReadinessGauge isActive={true} targetScore={92} />
             </div>
-          </motion.div>
+          </div>
 
           {/* Box 3: Violations Tracker */}
-          <motion.div 
-            className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full"
-            initial={{ y: 20 }}
-            animate={isInView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <div
+            className="col-span-1 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full animate-fade-in-up"
+            style={{ animationDelay: "300ms" }}
           >
             <div className="relative z-10 mb-6">
               <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
@@ -180,17 +165,15 @@ export function BentoFeatures() {
             </div>
             <div className="relative z-10 w-full">
               <div className="w-full transform scale-95 sm:scale-100 origin-top">
-                 <ViolationsTracker isActive={isInView} />
+                 <ViolationsTracker isActive={true} />
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Box 4: Strategy Compliance */}
-          <motion.div 
-            className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full"
-            initial={{ y: 20 }}
-            animate={isInView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <div
+            className="col-span-1 md:col-span-2 lg:col-span-2 glass-panel p-8 sm:p-10 rounded-[2rem] relative overflow-hidden group flex flex-col justify-start h-full animate-fade-in-up"
+            style={{ animationDelay: "400ms" }}
           >
             <div className="relative z-10 mb-6">
               <div className="w-12 h-12 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
@@ -201,10 +184,10 @@ export function BentoFeatures() {
             </div>
             <div className="relative z-10 w-full">
                <div className="w-full">
-                 <StrategyComplianceMonitor isActive={isInView} />
+                 <StrategyComplianceMonitor isActive={true} />
                </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

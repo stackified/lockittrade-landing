@@ -1,9 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, useRef } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion"
+import { useState, useEffect, useMemo } from "react"
 
 // Generate deterministic particle data using a seed
 function seededRandom(seed: number) {
@@ -26,15 +23,10 @@ const PARTICLE_COUNT = 16
 
 export function ParticleBackground() {
   const [mounted, setMounted] = useState(false)
-  const reducedMotion = usePrefersReducedMotion()
-  // Pause the per-particle animations whenever this background is off-screen.
-  const { ref, inView } = useInView({ rootMargin: "100px" })
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  const animate = mounted && inView && !reducedMotion
 
   // Generate particles only once using deterministic seed
   const particles: Particle[] = useMemo(() => {
@@ -52,14 +44,14 @@ export function ParticleBackground() {
   // Don't render particles on server to avoid hydration mismatch
   if (!mounted) {
     return (
-      <div ref={ref} className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
       </div>
     )
   }
 
   return (
-    <div ref={ref} className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-zinc-900" />
 
       {/* Ambient glow orbs */}
@@ -69,7 +61,7 @@ export function ParticleBackground() {
       {/* Animated particles */}
       <div className="absolute inset-0">
         {particles.map((p, i) => (
-          <motion.div
+          <div
             key={i}
             className="absolute rounded-full bg-[#00A9E0]"
             style={{
@@ -79,47 +71,25 @@ export function ParticleBackground() {
               left: p.left,
               opacity: p.opacity,
             }}
-            animate={
-              animate
-                ? {
-                    opacity: [p.opacity * 0.3, p.opacity, p.opacity * 0.3],
-                    scale: [1, 1.8, 1],
-                  }
-                : undefined
-            }
-            transition={
-              animate
-                ? {
-                    duration: p.duration,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    delay: p.delay,
-                  }
-                : undefined
-            }
           />
         ))}
       </div>
 
       {/* Glowing network lines */}
       <svg className="absolute inset-0 w-full h-full opacity-10">
-        <motion.path
+        <path
           d="M0,80 Q250,30 500,80 T1000,80"
           stroke="url(#particleGrad)"
           strokeWidth="0.5"
           fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={animate ? { pathLength: 1, opacity: 0.6 } : { pathLength: 1, opacity: 0.4 }}
-          transition={animate ? { duration: 6, repeat: Infinity, repeatType: "reverse" } : { duration: 0 }}
+          opacity={0.4}
         />
-        <motion.path
+        <path
           d="M0,200 Q350,140 700,200 T1400,200"
           stroke="url(#particleGrad)"
           strokeWidth="0.5"
           fill="none"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={animate ? { pathLength: 1, opacity: 0.4 } : { pathLength: 1, opacity: 0.3 }}
-          transition={animate ? { duration: 8, repeat: Infinity, repeatType: "reverse", delay: 2 } : { duration: 0 }}
+          opacity={0.3}
         />
         <defs>
           <linearGradient id="particleGrad" x1="0%" y1="0%" x2="100%" y2="0%">

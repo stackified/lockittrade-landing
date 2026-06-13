@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import { Newspaper, Bell, Clock } from "lucide-react"
 
 const events = [
@@ -54,21 +52,14 @@ const impactStyles: Record<string, string> = {
 }
 
 export function NewsSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.15 })
-
   return (
-    <section className="relative bg-black py-16 md:py-24 overflow-hidden" ref={ref}>
+    <section className="relative bg-black py-16 md:py-24 overflow-hidden">
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#00A9E0]/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Copy */}
-          <motion.div
-            initial={{ y: 20 }}
-            animate={inView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
               <Newspaper size={16} />
               Economic Catalyst
@@ -94,14 +85,12 @@ export function NewsSection() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Calendar card */}
-          <motion.div
-            initial={{ y: 30 }}
-            animate={inView ? { y: 0 } : { y: 30 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="glass-panel rounded-[2rem] p-5 sm:p-6 relative overflow-hidden"
+          <div
+            className="glass-panel rounded-[2rem] p-5 sm:p-6 relative overflow-hidden animate-fade-in-up"
+            style={{ animationDelay: "200ms" }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A9E0]/5 to-transparent pointer-events-none" />
             <div className="relative z-10">
@@ -115,12 +104,10 @@ export function NewsSection() {
 
               <div className="space-y-2">
                 {events.map((event, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    initial={{ x: 20 }}
-                    animate={inView ? { x: 0 } : { x: 20 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                    className="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#00A9E0]/30 hover:bg-white/[0.05] transition-colors"
+                    className="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:border-[#00A9E0]/30 hover:bg-white/[0.05] transition-colors animate-fade-in-left"
+                    style={{ animationDelay: `${300 + i * 80}ms` }}
                   >
                     <div className="text-xs font-mono text-zinc-500 w-12 shrink-0">{event.time}</div>
                     <div className="w-10 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-[11px] font-bold text-zinc-300 shrink-0">
@@ -137,11 +124,11 @@ export function NewsSection() {
                     >
                       {event.impact}
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

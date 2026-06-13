@@ -1,7 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { useState } from "react"
 import { Trophy, Target, TrendingUp, PieChart } from "lucide-react"
 
 type CategoryKey = "consistency" | "winRate" | "rMultiple"
@@ -38,8 +37,6 @@ const rankBadge = (rank: number) => {
 }
 
 export function LeaderboardSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.15 })
   const [active, setActive] = useState<CategoryKey>("consistency")
 
   const activeCategory = categories.find((c) => c.key === active)!
@@ -48,16 +45,11 @@ export function LeaderboardSection() {
   )
 
   return (
-    <section className="relative bg-black py-16 md:py-24 overflow-hidden" ref={ref}>
+    <section className="relative bg-black py-16 md:py-24 overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00A9E0]/[0.06] blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center max-w-2xl mx-auto mb-12 sm:mb-16"
-          initial={{ y: 20 }}
-          animate={inView ? { y: 0 } : { y: 20 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
             <Trophy size={16} />
             Community Leaderboard
@@ -69,13 +61,11 @@ export function LeaderboardSection() {
             Ranked by the metrics that actually matter — not just P&L. See where you stand against the
             community and turn discipline into bragging rights.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="max-w-3xl mx-auto glass-panel rounded-[2rem] p-5 sm:p-8 relative overflow-hidden"
-          initial={{ y: 30 }}
-          animate={inView ? { y: 0 } : { y: 30 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        <div
+          className="max-w-3xl mx-auto glass-panel rounded-[2rem] p-5 sm:p-8 relative overflow-hidden animate-fade-in-up"
+          style={{ animationDelay: "200ms" }}
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A9E0]/10 blur-[80px] rounded-full pointer-events-none" />
 
@@ -114,10 +104,8 @@ export function LeaderboardSection() {
               const rank = i + 1
               const badge = rankBadge(rank)
               return (
-                <motion.div
+                <div
                   key={trader.handle}
-                  layout
-                  transition={{ duration: 0.4, type: "spring", damping: 22 }}
                   className={`grid grid-cols-[40px_1fr_auto] sm:grid-cols-[40px_1fr_auto_auto] gap-3 sm:gap-4 items-center px-4 py-3 rounded-xl border transition-colors ${
                     trader.you
                       ? "bg-[#00A9E0]/10 border-[#00A9E0]/30"
@@ -148,7 +136,7 @@ export function LeaderboardSection() {
                     </span>
                     <span className="text-xs text-zinc-500 ml-0.5">{activeCategory.suffix}</span>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
@@ -156,7 +144,7 @@ export function LeaderboardSection() {
           <p className="relative z-10 text-center text-xs text-zinc-600 mt-6">
             Sample standings · Updated weekly · Anonymous mode available
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

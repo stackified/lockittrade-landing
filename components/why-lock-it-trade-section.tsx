@@ -1,44 +1,9 @@
 "use client"
 
-import { useEffect } from "react"
-import { motion, useAnimation } from "framer-motion"
-import { useInView } from "react-intersection-observer"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Clock, Brain, TrendingUp } from "lucide-react"
 
 export function WhyLockItTradeSection() {
-  const controls = useAnimation()
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible")
-    }
-  }, [controls, inView])
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { y: 20 },
-    visible: {
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  }
-
   const benefits = [
     {
       icon: CheckCircle,
@@ -70,36 +35,30 @@ export function WhyLockItTradeSection() {
         <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-[#00A9E0]/5 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
+          <div
             className="flex flex-col items-center"
           >
             {/* Section Title */}
-            <motion.h2 className="text-3xl md:text-4xl font-bold text-white text-center" variants={itemVariants}>
+            <h2 className="text-3xl md:text-4xl font-bold text-white text-center animate-fade-in-up">
               Why Lock It Trade?
-            </motion.h2>
+            </h2>
 
-            <motion.p
-              className="text-slate-400 max-w-xl mx-auto text-center text-md md:text-lg mt-4 mb-12"
-              variants={itemVariants}
+            <p
+              className="text-slate-400 max-w-xl mx-auto text-center text-md md:text-lg mt-4 mb-12 animate-fade-in-up"
+              style={{ animationDelay: "100ms" }}
             >
               Because traders who follow their edge, win. Lock It Trade helps you master yours.
-            </motion.p>
+            </p>
 
             {/* Benefits Grid */}
-            <motion.div
+            <div
               className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 w-full max-w-4xl mx-auto"
-              variants={containerVariants}
             >
               {benefits.map((benefit, index) => (
-                <motion.div
+                <div
                   key={index}
-                  className="bg-white/5 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-[#00A9E0]/30 transition-all duration-300"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02, borderColor: "rgba(0, 169, 224, 0.5)" }}
+                  className="bg-white/5 backdrop-blur-sm border border-zinc-800/50 rounded-xl p-6 hover:border-[#00A9E0]/30 hover:scale-[1.02] transition-all duration-300 animate-fade-in-up"
+                  style={{ animationDelay: `${200 + index * 100}ms` }}
                 >
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 mt-1">
@@ -112,12 +71,12 @@ export function WhyLockItTradeSection() {
                       <p className="text-slate-400 text-sm">{benefit.description}</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Final CTA */}
-            <motion.div className="text-center" variants={itemVariants}>
+            <div className="text-center animate-fade-in-up" style={{ animationDelay: "600ms" }}>
               <Button
                 size="lg"
                 className="bg-[#00A9E0] hover:bg-[#00A9E0]/80 text-white font-semibold px-8 py-7 text-lg transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,169,224,0.5)] hover:scale-105"
@@ -129,8 +88,8 @@ export function WhyLockItTradeSection() {
               <p className="text-slate-400 text-sm mt-4 max-w-lg mx-auto">
                 Join thousands of traders using Lock It Trade to pass challenges, scale accounts, and win with clarity.
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
     </>

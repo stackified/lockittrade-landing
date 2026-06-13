@@ -1,9 +1,6 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
 import { Trophy, Shield, Zap, Target, Star } from "lucide-react"
-import { useInView } from "react-intersection-observer"
 
 const journeySteps = [
   { id: 1, icon: Shield, title: "Risk Manager", description: "Consistently risk < 1% per trade for 20 days. Establish the baseline of survival.", color: "#10b981", active: true },
@@ -13,29 +10,13 @@ const journeySteps = [
 ]
 
 export function GamificationSection() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const containerRef = useRef<HTMLDivElement>(null)
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"],
-  })
-
-  // Map scroll progress to a percentage height for the line
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-
   return (
-    <section ref={ref} className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-black via-[#050505] to-black">
+    <section className="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-black via-[#050505] to-black">
       {/* Background accents */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[#00A9E0]/[0.03] blur-[150px] rounded-full pointer-events-none" />
 
       <div className="container max-w-5xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-16 sm:mb-24"
-          initial={{ y: 20 }}
-          animate={inView ? { y: 0 } : { y: 20 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="text-center mb-16 sm:mb-24 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
             <Star size={16} />
             The Journey
@@ -46,29 +27,26 @@ export function GamificationSection() {
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
             Trading is a game of psychology. LockItTrade gamifies your discipline, rewarding you for following your rules and keeping you engaged through the grind.
           </p>
-        </motion.div>
+        </div>
 
         {/* Vertical Timeline Journey */}
-        <div ref={containerRef} className="relative max-w-3xl mx-auto pt-10 pb-10">
+        <div className="relative max-w-3xl mx-auto pt-10 pb-10">
           {/* Main vertical line */}
           <div className="absolute left-[28px] sm:left-1/2 top-0 bottom-0 w-1 bg-white/[0.05] sm:-translate-x-1/2 rounded-full" />
           
-          {/* Animated fill line linked to scroll */}
-          <motion.div 
-            className="absolute left-[28px] sm:left-1/2 top-0 w-1 bg-gradient-to-b from-[#10b981] via-[#9C5FFF] to-[#00A9E0] sm:-translate-x-1/2 rounded-full"
-            style={{ height: lineHeight }}
+          {/* Fill line (static full height — parallax removed) */}
+          <div
+            className="absolute left-[28px] sm:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#10b981] via-[#9C5FFF] to-[#00A9E0] sm:-translate-x-1/2 rounded-full"
           />
 
           <div className="space-y-12 sm:space-y-24 relative">
             {journeySteps.map((step, index) => {
               const isEven = index % 2 === 0
               return (
-                <motion.div
+                <div
                   key={step.id}
-                  className={`relative flex items-center gap-6 sm:gap-12 ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}
-                  initial={{ y: 30 }}
-                  animate={inView ? { y: 0 } : { y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
+                  className={`relative flex items-center gap-6 sm:gap-12 animate-fade-in-up ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}
+                  style={{ animationDelay: `${300 + index * 200}ms` }}
                 >
                   {/* Content Box */}
                   <div className={`w-full sm:w-1/2 pl-16 sm:pl-0 ${isEven ? 'sm:text-right' : 'sm:text-left'}`}>
@@ -87,18 +65,16 @@ export function GamificationSection() {
 
                   {/* Center Node */}
                   <div className="absolute left-0 sm:left-1/2 top-1/2 -translate-y-1/2 sm:-translate-x-1/2 w-14 h-14 rounded-full border-4 border-black bg-zinc-900 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-                     <motion.div 
-                       className="absolute inset-0 rounded-full opacity-50"
+                     <div
+                       className={`absolute inset-0 rounded-full opacity-50 ${step.active ? 'animate-pulse' : ''}`}
                        style={{ backgroundColor: step.active ? step.color : 'transparent' }}
-                       animate={step.active ? { scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] } : {}}
-                       transition={{ duration: 2, repeat: Infinity }}
                      />
                      <step.icon size={24} style={{ color: step.active ? step.color : '#52525b' }} className="relative z-10" />
                   </div>
 
                   {/* Spacer for opposite side */}
                   <div className="hidden sm:block w-1/2" />
-                </motion.div>
+                </div>
               )
             })}
           </div>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { TradingCards } from "@/components/trading-cards"
 import { ParticleBackground } from "@/components/particle-background"
@@ -23,9 +22,6 @@ const VideoModal = dynamic(
 export function HeroSection() {
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
-  const { scrollY } = useScroll()
-  const y1 = useTransform(scrollY, [0, 1000], [0, 200])
-  const opacity1 = useTransform(scrollY, [0, 500], [1, 0])
 
   return (
     <>
@@ -152,15 +148,11 @@ export function HeroSection() {
               </div>
 
               {/* Floating Widget: AI Rating (top-right) */}
-              <motion.div
-                className="absolute -top-5 -right-4 lg:-right-10 z-20 hidden md:block"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.3 }}
+              <div
+                className="absolute -top-5 -right-4 lg:-right-10 z-20 hidden md:block animate-fade-in"
+                style={{ animationDelay: "1300ms" }}
               >
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                <div
                   className="px-5 py-4 rounded-2xl backdrop-blur-xl bg-[#0a0a0a]/90 border border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5),0_0_50px_rgba(0,169,224,0.15)]"
                 >
                   <div className="flex items-center gap-4">
@@ -174,19 +166,15 @@ export function HeroSection() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Floating Widget: Win-rate analysis (bottom-left) */}
-              <motion.div
-                className="absolute bottom-16 -left-4 lg:-left-12 z-20 hidden md:block"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.5 }}
+              <div
+                className="absolute bottom-16 -left-4 lg:-left-12 z-20 hidden md:block animate-fade-in"
+                style={{ animationDelay: "1500ms" }}
               >
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                <div
                   className="px-5 py-4 rounded-2xl backdrop-blur-xl bg-[#0a0a0a]/90 border border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5)]"
                 >
                   <div className="flex items-center gap-4">
@@ -212,19 +200,15 @@ export function HeroSection() {
                       <p className="text-2xl font-bold text-white">68.4%</p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Floating Widget: Summary (bottom-right) */}
-              <motion.div
-                className="absolute bottom-24 -right-2 lg:-right-8 z-20 hidden md:block"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.7 }}
+              <div
+                className="absolute bottom-24 -right-2 lg:-right-8 z-20 hidden md:block animate-fade-in"
+                style={{ animationDelay: "1700ms" }}
               >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+                <div
                   className="px-5 py-4 rounded-2xl backdrop-blur-xl bg-[#0a0a0a]/90 border border-white/10 shadow-[0_25px_50px_rgba(0,0,0,0.5),0_0_50px_rgba(16,185,129,0.12)]"
                 >
                   <div className="flex items-center gap-4">
@@ -236,20 +220,16 @@ export function HeroSection() {
                       <p className="text-2xl font-bold text-emerald-500">+$12,480</p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Epic Ground shadow */}
               <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-4/5 h-32 bg-[#00A9E0]/30 blur-[80px] rounded-[100%] pointer-events-none" />
             </div>
             
-            <motion.div
-              className="mt-8 md:mt-12"
-              animate={{}}
-              transition={{ duration: 1, delay: 1.5 }}
-            >
+            <div className="mt-8 md:mt-12 animate-fade-in" style={{ animationDelay: "1500ms" }}>
               <PoweredByOpenAI />
-            </motion.div>
+            </div>
 
           </div>
         </div>

@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { useInView } from "react-intersection-observer"
 import { Zap, Clock, Brain, Sparkles } from "lucide-react"
 
 const traderTypes = {
@@ -134,13 +132,12 @@ function RadarChart({ stats, color }: { stats: any; color: string }) {
 
 export function TraderTypeSelector() {
   const [activeTab, setActiveTab] = useState<TraderTypeKey>("scalper")
-  const [sectionRef, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const activeData = traderTypes[activeTab]
   const Icon = activeData.icon
 
   return (
-    <section ref={sectionRef} className="py-24 sm:py-36 bg-black relative overflow-hidden">
+    <section className="py-24 sm:py-36 bg-black relative overflow-hidden">
       {/* Background glow matching active tab */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none transition-colors duration-1000">
         <div 
@@ -150,26 +147,19 @@ export function TraderTypeSelector() {
       </div>
 
       <div className="container max-w-6xl mx-auto px-4 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ y: 20 }}
-          animate={inView ? { y: 0 } : { y: 20 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Adaptive AI for <span style={{ color: activeData.color }} className="transition-colors duration-500">Every Style</span>.
           </h2>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
             LockItTrade dynamically adjusts its insights and compliance monitoring based on how you trade.
           </p>
-        </motion.div>
+        </div>
 
         {/* Tab Selector */}
-        <motion.div 
-          className="flex justify-center mb-12 sm:mb-20"
-          initial={{ y: 20 }}
-          animate={inView ? { y: 0 } : { y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <div
+          className="flex justify-center mb-12 sm:mb-20 animate-fade-in-up"
+          style={{ animationDelay: "200ms" }}
         >
           <div className="bg-white/5 backdrop-blur-md p-1.5 rounded-full border border-white/10 flex overflow-x-auto max-w-full">
             {(Object.keys(traderTypes) as TraderTypeKey[]).map((key) => {
@@ -179,16 +169,11 @@ export function TraderTypeSelector() {
                   key={key}
                   onClick={() => setActiveTab(key)}
                   className={`relative px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 flex-shrink-0 ${
-                    isActive ? "text-white" : "text-zinc-400 hover:text-white hover:bg-white/5"
+                    isActive
+                      ? "text-white bg-white/10 border border-white/20 shadow-lg backdrop-blur-sm"
+                      : "text-zinc-400 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeTabIndicator"
-                      className="absolute inset-0 bg-white/10 rounded-full border border-white/20 shadow-lg backdrop-blur-sm"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
                   <span className="relative z-10 flex items-center gap-2">
                     {traderTypes[key].title}
                   </span>
@@ -196,32 +181,25 @@ export function TraderTypeSelector() {
               )
             })}
           </div>
-        </motion.div>
+        </div>
 
         {/* Content Area */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           
           {/* Left: Interactive Radar Chart */}
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={inView ? { scale: 1 } : { scale: 0.9 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="order-2 lg:order-1 glass-panel p-8 sm:p-12 rounded-[2.5rem] flex items-center justify-center relative"
+          <div
+            className="order-2 lg:order-1 glass-panel p-8 sm:p-12 rounded-[2.5rem] flex items-center justify-center relative animate-fade-in"
+            style={{ animationDelay: "300ms" }}
           >
             <RadarChart stats={activeData.stats} color={activeData.color} />
-          </motion.div>
+          </div>
 
           {/* Right: Dynamic Content */}
           <div className="order-1 lg:order-2 h-[250px] relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.4 }}
-                className="absolute inset-0 flex flex-col justify-center"
-              >
+            <div
+              key={activeTab}
+              className="absolute inset-0 flex flex-col justify-center animate-fade-in-left"
+            >
                 <div 
                   className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg"
                   style={{ backgroundColor: `${activeData.color}20`, border: `1px solid ${activeData.color}40` }}
@@ -241,8 +219,7 @@ export function TraderTypeSelector() {
                     <p className="text-zinc-400 text-sm leading-relaxed">{activeData.feature}</p>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
 
         </div>

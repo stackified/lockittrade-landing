@@ -1,7 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
 import Image from "next/image"
 import { getAssetPath } from "@/lib/utils"
 
@@ -14,10 +12,8 @@ const brokers = [
 ]
 
 export function BrokerLogos() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
-
   return (
-    <section ref={ref} className="relative pt-12 pb-4 md:pt-16 md:pb-8 bg-black overflow-hidden">
+    <section className="relative pt-12 pb-4 md:pt-16 md:pb-8 bg-black overflow-hidden">
       {/* Seamless Top Gradient Blend */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/80 to-transparent z-10 pointer-events-none" />
       {/* Soft Top Glow */}
@@ -26,16 +22,11 @@ export function BrokerLogos() {
       {/* Bottom border only */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
-      <motion.div
-        className="container max-w-screen-xl mx-auto px-4 mb-8"
-        initial={{ y: 10 }}
-        animate={inView ? { y: 0 } : { y: 10 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="container max-w-screen-xl mx-auto px-4 mb-8 animate-fade-in-up">
         <p className="text-zinc-500 text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-center">
           Seamless Integration with Your Favorite Platforms
         </p>
-      </motion.div>
+      </div>
       
       {/* Marquee container with edge fades */}
       <div className="relative">

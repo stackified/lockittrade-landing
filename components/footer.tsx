@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import { Youtube, ArrowUp, Instagram } from "lucide-react"
 import { getAssetPath } from "@/lib/utils"
 
@@ -125,16 +124,13 @@ export function Footer() {
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-6 left-6 bg-[#00A9E0]/20 hover:bg-[#00A9E0]/40 text-[#00A9E0] p-3 rounded-full shadow-[0_0_15px_rgba(0,169,224,0.3)] hover:shadow-[0_0_20px_rgba(0,169,224,0.5)] transition-all duration-300 z-50"
+        <button
+          className="fixed bottom-6 left-6 bg-[#00A9E0]/20 hover:bg-[#00A9E0]/40 text-[#00A9E0] p-3 rounded-full shadow-[0_0_15px_rgba(0,169,224,0.3)] hover:shadow-[0_0_20px_rgba(0,169,224,0.5)] transition-all duration-300 z-50 animate-fade-in"
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >
           <ArrowUp className="h-5 w-5" />
-        </motion.button>
+        </button>
       )}
     </footer>
   )

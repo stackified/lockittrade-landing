@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react"
 import { TrendingUp, TrendingDown, Clock, AlertTriangle, ShieldAlert } from "lucide-react"
 
 interface ViolationItem {
@@ -29,16 +28,11 @@ const SegmentedPulseBar = ({ proximity, color }: { proximity: number; color: str
   return (
     <div className="flex gap-1 w-full mt-2">
       {Array.from({ length: segments }).map((_, i) => (
-        <motion.div
+        <div
           key={i}
           className="h-1.5 flex-1 rounded-sm"
-          initial={{ scaleY: 0 }}
-          animate={{ 
-            opacity: i < activeSegments ? 1 : 0.2,
-            scaleY: 1
-          }}
-          transition={{ duration: 0.3, delay: i * 0.05 }}
           style={{
+            opacity: i < activeSegments ? 1 : 0.2,
             backgroundColor: i < activeSegments ? color : "#3f3f46",
             boxShadow: i < activeSegments ? `0 0 8px ${color}60` : "none",
           }}
@@ -196,14 +190,11 @@ export function ViolationsTracker({ isActive = false }: ViolationsTrackerProps) 
               <ShieldAlert className="w-4 h-4 text-[#00A9E0]" />
               Active Alerts
             </span>
-            <motion.div
-              className="flex items-center justify-center w-6 h-6 rounded-md bg-[#00A9E0]/20 border border-[#00A9E0]/50"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            <div
+              className="flex items-center justify-center w-6 h-6 rounded-md bg-[#00A9E0]/20 border border-[#00A9E0]/50 animate-fade-in"
             >
               <span className="text-[#00A9E0] font-bold text-xs">{totalViolations}</span>
-            </motion.div>
+            </div>
           </div>
 
           {/* Time Filter */}
@@ -232,19 +223,16 @@ export function ViolationsTracker({ isActive = false }: ViolationsTrackerProps) 
           const isHovered = hoveredId === violation.id
 
           return (
-            <motion.div
+            <div
               key={violation.id}
-              className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border transition-all duration-500 cursor-default"
+              className="relative rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border transition-all duration-500 cursor-default animate-fade-in-left"
               style={{
                 borderColor: violation.severity === "critical" ? `${color}40` : "rgba(255,255,255,0.05)",
                 boxShadow: violation.severity === "critical" ? `0 0 20px ${color}10, inset 0 0 20px ${color}05` : "none",
+                animationDelay: `${index * 100}ms`,
               }}
               onMouseEnter={() => setHoveredId(violation.id)}
               onMouseLeave={() => setHoveredId(null)}
-              layout
-              initial={{ x: -20 }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {/* Critical Pulse Effect */}
               {violation.severity === "critical" && (
@@ -306,25 +294,20 @@ export function ViolationsTracker({ isActive = false }: ViolationsTrackerProps) 
                 <SegmentedPulseBar proximity={violation.proximityToLimit} color={color} />
 
                 {/* Expanded Details on Hover */}
-                <AnimatePresence>
-                  {isHovered && violation.triggerTrade && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginTop: 12 }}
-                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      className="pt-3 border-t border-white/5 overflow-hidden"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Trigger Source</span>
-                        <span className="text-xs text-[#00A9E0] font-mono bg-[#00A9E0]/10 px-2 py-0.5 rounded border border-[#00A9E0]/20">
-                          {violation.triggerTrade}
-                        </span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isHovered && violation.triggerTrade && (
+                  <div
+                    className="pt-3 mt-3 border-t border-white/5 overflow-hidden animate-fade-in"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] text-zinc-500 uppercase tracking-wider">Trigger Source</span>
+                      <span className="text-xs text-[#00A9E0] font-mono bg-[#00A9E0]/10 px-2 py-0.5 rounded border border-[#00A9E0]/20">
+                        {violation.triggerTrade}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
-            </motion.div>
+            </div>
           )
         })}
       </div>
