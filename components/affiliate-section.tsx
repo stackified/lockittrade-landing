@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Handshake, DollarSign, Users, MousePointerClick, ArrowRight, Link2 } from "lucide-react"
 
@@ -13,21 +11,16 @@ const stats = [
 ]
 
 export function AffiliateSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.15 })
-
   return (
-    <section className="relative bg-gradient-to-b from-black to-zinc-900 py-16 md:py-24 overflow-hidden" ref={ref}>
+    <section className="relative bg-gradient-to-b from-black to-zinc-900 py-16 md:py-24 overflow-hidden">
       <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Portal preview card */}
-          <motion.div
-            initial={{ y: 30 }}
-            animate={inView ? { y: 0 } : { y: 30 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="order-2 lg:order-1 glass-panel rounded-[2rem] p-6 sm:p-8 relative overflow-hidden"
+          <div
+            className="order-2 lg:order-1 glass-panel rounded-[2rem] p-6 sm:p-8 relative overflow-hidden animate-fade-in-up"
+            style={{ animationDelay: "100ms" }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#00A9E0]/5 to-transparent pointer-events-none" />
             <div className="relative z-10">
@@ -43,19 +36,17 @@ export function AffiliateSection() {
 
               <div className="grid grid-cols-2 gap-3 mb-5">
                 {stats.map((stat, i) => (
-                  <motion.div
+                  <div
                     key={i}
-                    initial={{ scale: 0.9 }}
-                    animate={inView ? { scale: 1 } : { scale: 0.9 }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    className="p-4 rounded-xl bg-white/[0.03] border border-white/5"
+                    className="p-4 rounded-xl bg-white/[0.03] border border-white/5 animate-fade-in"
+                    style={{ animationDelay: `${300 + i * 100}ms` }}
                   >
                     <div className={`w-9 h-9 rounded-lg ${stat.bg} flex items-center justify-center mb-3`}>
                       <stat.icon className={`w-4 h-4 ${stat.accent}`} />
                     </div>
                     <p className="text-2xl font-bold text-white tabular-nums">{stat.value}</p>
                     <p className="text-xs text-zinc-500">{stat.label}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -66,15 +57,10 @@ export function AffiliateSection() {
                 <button className="text-[11px] font-semibold text-[#00A9E0] hover:text-white transition-colors shrink-0">Copy</button>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Copy */}
-          <motion.div
-            initial={{ y: 20 }}
-            animate={inView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6 }}
-            className="order-1 lg:order-2"
-          >
+          <div className="order-1 lg:order-2 animate-fade-in-up">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
               <Handshake size={16} />
               Affiliate Program
@@ -108,7 +94,7 @@ export function AffiliateSection() {
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import { LineChart, Clock, Sparkles } from "lucide-react"
 
 // Points for a stylised, upward-trending equity curve (0-100 viewBox)
@@ -15,20 +13,12 @@ const metrics = [
 ]
 
 export function BacktestingComingSoon() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, amount: 0.2 })
-
   return (
-    <section className="relative bg-black py-16 md:py-24 overflow-hidden" ref={ref}>
+    <section className="relative bg-black py-16 md:py-24 overflow-hidden">
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ y: 30 }}
-          animate={inView ? { y: 0 } : { y: 30 }}
-          transition={{ duration: 0.7 }}
-          className="max-w-5xl mx-auto glass-panel rounded-[2.5rem] p-8 sm:p-12 relative overflow-hidden"
-        >
+        <div className="max-w-5xl mx-auto glass-panel rounded-[2.5rem] p-8 sm:p-12 relative overflow-hidden animate-fade-in-up">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.06] via-transparent to-[#00A9E0]/[0.06] pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -74,13 +64,11 @@ export function BacktestingComingSoon() {
                         <stop offset="100%" stopColor="#00A9E0" stopOpacity="0" />
                       </linearGradient>
                     </defs>
-                    <motion.path
+                    <path
                       d={`${equityPath} L100,100 L0,100 Z`}
                       fill="url(#equityFill)"
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
                     />
-                    <motion.path
+                    <path
                       d={equityPath}
                       fill="none"
                       stroke="#00A9E0"
@@ -88,9 +76,6 @@ export function BacktestingComingSoon() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       vectorEffect="non-scaling-stroke"
-                      initial={{ pathLength: 1 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1.2, delay: 0.3, ease: "easeInOut" }}
                     />
                   </svg>
                 </div>
@@ -112,7 +97,7 @@ export function BacktestingComingSoon() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { CheckCircle2, XCircle, Activity, ShieldCheck, Target, Zap, Clock } from "lucide-react"
 
 interface TradingRule {
@@ -116,8 +115,8 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
               r={radius}
               fill="transparent"
             />
-            {/* Animated Progress Circle */}
-            <motion.circle
+            {/* Animated Progress Circle - driven by JS score state */}
+            <circle
               className="text-[#00A9E0] stroke-current"
               strokeWidth="8"
               strokeLinecap="round"
@@ -125,10 +124,8 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
               cy="50"
               r={radius}
               fill="transparent"
-              initial={{ strokeDashoffset: circumference }}
-              animate={{ strokeDashoffset }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              style={{ strokeDasharray: circumference }}
+              strokeDashoffset={strokeDashoffset}
+              style={{ strokeDasharray: circumference, transition: "stroke-dashoffset 0.3s ease-out" }}
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -171,16 +168,11 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
 
       {/* Rules Glowing Pills */}
       <div className="flex flex-col gap-3 min-h-[250px]">
-        <AnimatePresence mode="popLayout">
           {filteredRules.map((rule, i) => (
-            <motion.div
+            <div
               key={rule.id}
-              layout
-              initial={{ scale: 0.95, y: 10 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              transition={{ duration: 0.3, delay: i * 0.05 }}
-              className="group relative bg-black/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between overflow-hidden backdrop-blur-md hover:bg-white/5 transition-colors cursor-default"
+              style={{ animationDelay: `${i * 50}ms` }}
+              className="group relative bg-black/40 border border-white/5 rounded-2xl p-4 flex items-center justify-between overflow-hidden backdrop-blur-md hover:bg-white/5 transition-colors cursor-default animate-fade-in-up"
             >
               {/* Dynamic Glow Line */}
               <div 
@@ -207,17 +199,15 @@ export function StrategyComplianceMonitor({ isActive = false }: StrategyComplian
                   {rule.complianceRate}%
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </AnimatePresence>
-        
+
         {filteredRules.length === 0 && (
-          <motion.div 
-            animate={{}} 
+          <div
             className="flex-1 flex items-center justify-center text-zinc-500 text-sm"
           >
             No rules found for this category.
-          </motion.div>
+          </div>
         )}
       </div>
     </div>

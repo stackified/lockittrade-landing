@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
 import { Info } from "lucide-react"
 
 interface AIReadinessGaugeProps {
@@ -78,8 +77,8 @@ export function AIReadinessGauge({ isActive = false, targetScore = 98 }: AIReadi
           {/* Background Circle - Static */}
           <circle cx="140" cy="140" r={radius} fill="none" stroke="#374151" strokeWidth="20" className="opacity-30" />
 
-          {/* Progress Circle - Only this animates */}
-          <motion.circle
+          {/* Progress Circle - driven by JS score state */}
+          <circle
             cx="140"
             cy="140"
             r={radius}
@@ -88,16 +87,15 @@ export function AIReadinessGauge({ isActive = false, targetScore = 98 }: AIReadi
             strokeWidth="20"
             strokeLinecap="round"
             strokeDasharray={strokeDasharray}
-            initial={{ strokeDashoffset: strokeDasharray }}
-            animate={{ strokeDashoffset: strokeDashoffset }}
-            transition={{ duration: 0.1, ease: "easeOut" }}
+            strokeDashoffset={strokeDashoffset}
             style={{
               filter: `drop-shadow(0 0 8px ${currentColor}40)`,
+              transition: "stroke-dashoffset 0.1s ease-out",
             }}
           />
 
-          {/* Glow Effect - Only this animates */}
-          <motion.circle
+          {/* Glow Effect - driven by JS score state */}
+          <circle
             cx="140"
             cy="140"
             r={radius}
@@ -106,12 +104,11 @@ export function AIReadinessGauge({ isActive = false, targetScore = 98 }: AIReadi
             strokeWidth="4"
             strokeLinecap="round"
             strokeDasharray={strokeDasharray}
-            initial={{ strokeDashoffset: strokeDasharray }}
-            animate={{ strokeDashoffset: strokeDashoffset }}
-            transition={{ duration: 0.1, ease: "easeOut" }}
+            strokeDashoffset={strokeDashoffset}
             className="opacity-60"
             style={{
               filter: `blur(4px)`,
+              transition: "stroke-dashoffset 0.1s ease-out",
             }}
           />
         </svg>
@@ -136,40 +133,19 @@ export function AIReadinessGauge({ isActive = false, targetScore = 98 }: AIReadi
       </div>
 
       {/* Prop Firm Ready Message - Only shows when score reaches target */}
-      <AnimatePresence>
-        {showMessage && currentScore >= targetScore && (
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -30, scale: 0.8 }}
-            transition={{
-              duration: 0.8,
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
+      {showMessage && currentScore >= targetScore && (
+        <div className="mt-4 md:mt-6 w-full max-w-[80%] animate-fade-in-up">
+          <div
+            className="px-4 py-2 sm:py-3 rounded-full font-semibold text-white text-xs sm:text-sm md:text-base text-center w-full"
+            style={{
+              backgroundColor: currentColor,
+              boxShadow: `0 0 20px ${currentColor}40`,
             }}
-            className="mt-4 md:mt-6 w-full max-w-[80%]"
           >
-            <motion.div
-              className="px-4 py-2 sm:py-3 rounded-full font-semibold text-white text-xs sm:text-sm md:text-base text-center w-full"
-              style={{
-                backgroundColor: currentColor,
-                boxShadow: `0 0 20px ${currentColor}40`,
-              }}
-              animate={{
-                boxShadow: [`0 0 20px ${currentColor}40`, `0 0 30px ${currentColor}60`, `0 0 20px ${currentColor}40`],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              🎉 You&apos;re Prop Firm Ready!
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            🎉 You&apos;re Prop Firm Ready!
+          </div>
+        </div>
+      )}
 
       {/* Additional Stats - Static positioning */}
       <div className="flex justify-between gap-4 mt-6 w-full max-w-[95%] md:max-w-md px-2">

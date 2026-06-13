@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ParticleBackground } from "@/components/particle-background"
 import { AIGridBackground } from "@/components/ai-grid-background"
@@ -56,8 +55,6 @@ const testimonials = [
 
 export function CommunitySection() {
   const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const inView = useInView(containerRef, { once: true, amount: 0.1 })
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
@@ -99,7 +96,7 @@ export function CommunitySection() {
 
   return (
     <>
-      <section className="relative py-16 md:py-24 overflow-hidden bg-black" ref={containerRef}>
+      <section className="relative py-16 md:py-24 overflow-hidden bg-black">
         {/* Background Components */}
         <AIGridBackground />
         <ParticleBackground />
@@ -108,11 +105,8 @@ export function CommunitySection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[800px] bg-[#00A9E0]/[0.05] blur-[150px] rounded-full pointer-events-none" />
 
         <div className="container max-w-screen-xl mx-auto px-4 relative z-10">
-          <motion.div
-            className="text-center mb-16 sm:mb-24"
-            initial={{ y: 20 }}
-            animate={inView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6 }}
+          <div
+            className="text-center mb-16 sm:mb-24 animate-fade-in-up"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00A9E0]/10 border border-[#00A9E0]/20 text-[#00A9E0] text-sm font-medium mb-6">
               <MessageCircle size={16} />
@@ -124,7 +118,7 @@ export function CommunitySection() {
             <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
               From journaling wins to learning from live calls and bootcamps, traders inside the LockItTrade Discord are scaling together.
             </p>
-          </motion.div>
+          </div>
 
           {/* Horizontally Scrollable Testimonials */}
           <div className="relative max-w-6xl mx-auto mb-20">
@@ -171,11 +165,9 @@ export function CommunitySection() {
           </div>
 
           {/* Metrics Row */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto"
-            initial={{ y: 20 }}
-            animate={inView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto animate-fade-in-up"
+            style={{ animationDelay: "200ms" }}
           >
              {[
                { number: "75K+", label: "Trades Analyzed" },
@@ -187,13 +179,11 @@ export function CommunitySection() {
                  <div className="text-zinc-400 font-medium">{metric.label}</div>
                </div>
              ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="text-center"
-            initial={{ y: 20 }}
-            animate={inView ? { y: 0 } : { y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <div
+            className="text-center animate-fade-in-up"
+            style={{ animationDelay: "400ms" }}
           >
             <Button
               size="lg"
@@ -202,7 +192,7 @@ export function CommunitySection() {
             >
               Join the Discord
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 

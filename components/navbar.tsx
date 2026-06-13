@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { WaitlistModal } from "@/components/waitlist-modal"
-import { motion, AnimatePresence } from "framer-motion"
 import { getAssetPath } from "@/lib/utils"
 
 export function Navbar() {
@@ -153,14 +152,9 @@ export function Navbar() {
         </nav>
 
         {/* Mobile Navigation Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-[80px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl p-6 lg:hidden flex flex-col space-y-4"
+        {isOpen && (
+            <div
+              className="absolute top-[80px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl p-6 lg:hidden flex flex-col space-y-4 animate-fade-in-down"
             >
               <Link href="/" className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
                 Home
@@ -194,9 +188,8 @@ export function Navbar() {
                   Start for free
                 </Button>
               </div>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
       </div>
 
       <WaitlistModal isOpen={isWaitlistModalOpen} onClose={() => setIsWaitlistModalOpen(false)} />
