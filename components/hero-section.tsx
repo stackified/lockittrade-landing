@@ -7,7 +7,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { AIGridBackground } from "@/components/ai-grid-background"
 import dynamic from "next/dynamic"
 import { PoweredByOpenAI } from "@/components/powered-by-openai"
-import { ChevronRight, Play, Star, Users, TrendingUp, Sparkles } from "lucide-react"
+import { Play, Star, Users, TrendingUp, Sparkles } from "lucide-react"
 
 // Modals are hidden by default — load their code only when first opened.
 const WaitlistModal = dynamic(
@@ -37,17 +37,8 @@ export function HeroSection() {
           <div 
             className="flex flex-col items-center text-center max-w-6xl mx-auto"
           >
-            {/* Pill badge */}
-            <div
-              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md mb-8 sm:mb-12 hover:bg-white/[0.05] transition-colors cursor-pointer animate-fade-in-down"
-              style={{ animationDelay: "100ms" }}
-              onClick={() => setIsWaitlistModalOpen(true)}
-            >
-              <span className="flex h-2.5 w-2.5 rounded-full bg-[#00A9E0] shadow-[0_0_8px_#00A9E0]"></span>
-              <span className="text-zinc-300 text-sm font-medium">LockItTrade Enterprise is Now Live</span>
-              <ChevronRight className="w-4 h-4 text-zinc-500" />
-            </div>
- 
+
+
             {/* Main Typography */}
             <h1
               className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-black text-white tracking-tighter leading-[1.05] mb-8 animate-fade-in-up"
