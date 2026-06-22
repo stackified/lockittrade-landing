@@ -187,14 +187,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        {/* Enhanced Structured Data with Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
-
         {/* Additional favicon links for better browser support */}
         <link rel="icon" type="image/png" sizes="32x32" href={getAssetPath("/favicon.png")} />
         <link rel="icon" type="image/png" sizes="16x16" href={getAssetPath("/favicon.png")} />
