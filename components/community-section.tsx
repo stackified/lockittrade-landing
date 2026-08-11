@@ -81,7 +81,7 @@ export function CommunitySection() {
 
     const scroll = () => {
       if (container) {
-        container.scrollLeft += 0.1
+        container.scrollLeft += 1
         // Seamless loop
         if (container.scrollLeft >= container.scrollWidth / 2) {
           container.scrollLeft = 0
