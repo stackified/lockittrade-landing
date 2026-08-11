@@ -144,7 +144,7 @@ export default function RootLayout({
       sameAs: [
         "https://www.youtube.com/@LockItTrade",
         "https://instagram.com/lockittrade",
-        "https://discord.gg/VJJEwe3tU2",
+        "https://discord.gg/n4bpHRwaMF",
       ],
       contactPoint: {
         "@type": "ContactPoint",

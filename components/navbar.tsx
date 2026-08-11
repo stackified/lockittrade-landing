@@ -87,7 +87,7 @@ export function Navbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 text-white rounded-2xl shadow-2xl min-w-[180px] p-2 animate-in fade-in-80 zoom-in-95 mt-2">
                 <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white hover:bg-white/10 hover:text-white text-zinc-300 cursor-pointer rounded-xl py-2.5 px-3 transition-all duration-200 text-sm font-semibold">
-                  <Link href="https://discord.gg/VJJEwe3tU2" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://discord.gg/n4bpHRwaMF" target="_blank" rel="noopener noreferrer">
                     Discord
                   </Link>
                 </DropdownMenuItem>
@@ -159,7 +159,7 @@ export function Navbar() {
               <Link href="/" className={`font-semibold py-2 px-4 rounded-xl transition-colors ${isActive("/") ? "text-[#00A9E0] bg-white/5" : "text-zinc-300 hover:text-white hover:bg-white/5"}`} onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link href="https://discord.gg/VJJEwe3tU2" target="_blank" className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
+              <Link href="https://discord.gg/n4bpHRwaMF" target="_blank" className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>
                 Community (Discord)
               </Link>
               <Link href="/#features" className="text-zinc-300 hover:text-white font-semibold py-2 px-4 rounded-xl hover:bg-white/5 transition-colors" onClick={() => setIsOpen(false)}>

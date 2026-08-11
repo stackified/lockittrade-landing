@@ -188,7 +188,7 @@ export function CommunitySection() {
             <Button
               size="lg"
               className="bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-full px-8 h-14 text-lg font-bold shadow-[0_0_30px_rgba(88,101,242,0.3)] hover:scale-105 transition-all"
-              onClick={() => window.open("https://discord.gg/VJJEwe3tU2", "_blank")}
+              onClick={() => window.open("https://discord.gg/n4bpHRwaMF", "_blank")}
             >
               Join the Discord
             </Button>
